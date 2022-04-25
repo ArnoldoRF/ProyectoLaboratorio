@@ -1,25 +1,27 @@
 
 package Modelos;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class MSolicitud {
     private int codigo;
     private String cedulaResponsable;
     private String cedulaBeneficiario;
     private int codigoFundacion;
-    private LocalDate fechaCreacion;
-    private LocalDate fechaAprobacion;
+    private String prioridad;
+    private Date fechaCreacion;
+    private Date fechaAprobacion;
     
     public MSolicitud() {}
     
     public MSolicitud(int codigo, String cedulaResponsable, String cedulaBeneficiario,
-            int codigoFundacion, LocalDate fechaCreacion, LocalDate fechaAprobacion) {
+            int codigoFundacion, String prioridad, Date fechaCreacion, Date fechaAprobacion) {
         
         this.codigo = codigo;
         this.cedulaResponsable = cedulaResponsable;
         this.cedulaBeneficiario = cedulaBeneficiario;
         this.codigoFundacion = codigoFundacion;
+        this.prioridad = prioridad;
         this.fechaAprobacion = fechaAprobacion;
         this.fechaCreacion = fechaCreacion;
     }
@@ -30,6 +32,14 @@ public class MSolicitud {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
     }
 
     public String getCedulaResponsable() {
@@ -56,19 +66,19 @@ public class MSolicitud {
         this.codigoFundacion = codigoFundacion;
     }
 
-    public LocalDate getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDate getFechaAprovacion() {
+    public Date getFechaAprovacion() {
         return fechaAprobacion;
     }
 
-    public void setFechaAprovacion(LocalDate fechaAprovacion) {
+    public void setFechaAprovacion(Date fechaAprovacion) {
         this.fechaAprobacion = fechaAprovacion;
     }
     
