@@ -17,7 +17,7 @@ public class ServicioCRUD extends ConexionDB {
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
+            ps.setInt(1, servicio.getCodigo());
             ps.setString(2, servicio.getNombre());
             ps.setDouble(3, servicio.getCosto());
             ps.setString(4, "A");
@@ -37,7 +37,7 @@ public class ServicioCRUD extends ConexionDB {
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
+            ps.setInt(1, servicio.getCodigo());
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
@@ -61,7 +61,7 @@ public class ServicioCRUD extends ConexionDB {
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, servicio.getNombre());
             ps.setDouble(2, servicio.getCosto());
-            ps.setInt(3, Integer.parseInt(servicio.getCodigo()));
+            ps.setInt(3, servicio.getCodigo());
             ps.execute();
         }
         catch(Exception e) {
@@ -77,7 +77,7 @@ public class ServicioCRUD extends ConexionDB {
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "E");
-            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
+            ps.setInt(1, servicio.getCodigo());
             ps.execute();
         }
         catch(Exception e) {

@@ -48,7 +48,7 @@ public class CServicio implements ActionListener {
         if(e.getSource() == vista.btnBuscar) {
             if(vista.txtCodigo.getText() != "") {
                 modelo = new MServicio();
-                modelo.setCodigo(vista.txtCodigo.getText());
+                modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
                 if(database.consultar(modelo)) {
                 
                     vista.txtNombre.setText(modelo.getNombre());
@@ -74,21 +74,21 @@ public class CServicio implements ActionListener {
         }
         
         if(e.getSource() == vista.btnInsertar) {
-            modelo.setCodigo(vista.txtCodigo.getText());
+            modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
             modelo.setNombre(vista.txtNombre.getText());
             modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
             database.insertar(modelo);
         }
         
         if(e.getSource() == vista.btnModificar) {
-            modelo.setCodigo(vista.txtCodigo.getText());
+            modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
             modelo.setNombre(vista.txtNombre.getText());
             modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
             database.insertar(modelo);
         }
         
         if(e.getSource() == vista.btnEliminar) {
-            modelo.setCodigo(vista.txtCodigo.getText());
+            modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
             database.eliminar(modelo);
         }
     }

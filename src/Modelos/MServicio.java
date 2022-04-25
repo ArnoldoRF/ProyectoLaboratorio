@@ -2,16 +2,17 @@
 package Modelos;
 
 public class MServicio {
-    private String codigo, nombre;
+    private int codigo;
+    private String nombre;
     private double costo;
     
     public MServicio() {
-        codigo = "";
+        codigo = 0;
         nombre = "";
         costo = 0;
     }
     
-    public MServicio(String codigo, String nombre, double costo) {
+    public MServicio(int codigo, String nombre, double costo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.costo = costo;
@@ -25,11 +26,11 @@ public class MServicio {
         this.costo = costo;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
