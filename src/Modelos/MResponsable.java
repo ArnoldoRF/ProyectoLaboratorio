@@ -3,13 +3,13 @@ package Modelos;
 
 public class MResponsable extends MPersona {
 
-    private String codigoFundacion;
+    private int codigoFundacion;
     
-    public String getCodigoFundacion() {
+    public int getCodigoFundacion() {
         return codigoFundacion;
     }
 
-    public void setCodigoFundacion(String codigoFundacion) {
+    public void setCodigoFundacion(int codigoFundacion) {
         this.codigoFundacion = codigoFundacion;
     }
 
