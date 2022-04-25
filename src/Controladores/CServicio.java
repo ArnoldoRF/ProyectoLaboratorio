@@ -15,7 +15,7 @@ public class CServicio implements ActionListener {
     private ServicioCRUD database;
     
     public CServicio(CMenu cmenu){
-        //vserv = new VServicio(cmenu.getVMenu(),false,null)
+        //vserv = new VServicio1(cmenu.getVMenu(),false,null)
     }
     
     public CServicio() {
