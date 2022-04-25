@@ -9,7 +9,20 @@ public class MSolicitud {
     private String cedulaBeneficiario;
     private int codigoFundacion;
     private LocalDate fechaCreacion;
-    private LocalDate fechaAprovacion;
+    private LocalDate fechaAprobacion;
+    
+    public MSolicitud() {}
+    
+    public MSolicitud(int codigo, String cedulaResponsable, String cedulaBeneficiario,
+            int codigoFundacion, LocalDate fechaCreacion, LocalDate fechaAprobacion) {
+        
+        this.codigo = codigo;
+        this.cedulaResponsable = cedulaResponsable;
+        this.cedulaBeneficiario = cedulaBeneficiario;
+        this.codigoFundacion = codigoFundacion;
+        this.fechaAprobacion = fechaAprobacion;
+        this.fechaCreacion = fechaCreacion;
+    }
 
     public int getCodigo() {
         return codigo;
@@ -52,11 +65,11 @@ public class MSolicitud {
     }
 
     public LocalDate getFechaAprovacion() {
-        return fechaAprovacion;
+        return fechaAprobacion;
     }
 
     public void setFechaAprovacion(LocalDate fechaAprovacion) {
-        this.fechaAprovacion = fechaAprovacion;
+        this.fechaAprobacion = fechaAprovacion;
     }
     
 }
