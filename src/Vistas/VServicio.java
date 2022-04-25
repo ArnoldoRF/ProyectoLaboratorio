@@ -141,7 +141,7 @@ public class VServicio extends javax.swing.JFrame {
         jPanel4.setMinimumSize(new java.awt.Dimension(1110, 580));
         jPanel4.setLayout(null);
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(0, 0, 710, 390);
+        jPanel4.setBounds(0, 0, 1110, 580);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
