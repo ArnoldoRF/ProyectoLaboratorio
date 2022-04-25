@@ -1,10 +1,10 @@
 
 package Controladores;
 
-import Generales.Mensajes;
 import Modelos.MServicio;
 import Vistas.VServicio;
 import Modelos.CRUD.ServicioCRUD;
+import Generales.Mensajes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,37 +12,57 @@ public class CServicio implements ActionListener {
     
     private VServicio vista;
     private MServicio modelo;
-    private ServicioCRUD crud;
+    private ServicioCRUD database;
     
     public CServicio(CMenu cmenu){
         //vserv = new VServicio(cmenu.getVMenu(),false,null)
     }
     
-    public CServicio(VServicio vista, MServicio modelo) {
-        this.vista = vista;
-        this.modelo = modelo;
-        this.crud = new ServicioCRUD();
-        this.vista.btnBuscar.addActionListener(this);
-        this.vista.btnInsertar.addActionListener(this);
-        this.vista.btnModificar.addActionListener(this);
-        this.vista.btnEliminar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
-        this.vista.btnCancelar.addActionListener(this);
+    public CServicio() {
+        vista = new VServicio();
+        modelo = new MServicio();
+        database = new ServicioCRUD();
+        
+        vista.btnBuscar.addActionListener(this);
+        vista.btnInsertar.addActionListener(this);
+        vista.btnModificar.addActionListener(this);
+        vista.btnEliminar.addActionListener(this);
+        vista.btnSalir.addActionListener(this);
+        vista.btnCancelar.addActionListener(this);
+    }
+    
+    public VServicio getVista() {
+        return vista;
+    }
+    
+    public MServicio getModelo() {
+        return modelo;
+    }
+    
+    public ServicioCRUD getCRUD() {
+        return database;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == vista.btnBuscar) {
             if(vista.txtCodigo.getText() != "") {
+                modelo = new MServicio();
                 modelo.setCodigo(vista.txtCodigo.getText());
-                crud.consultar(modelo);
+                if(database.consultar(modelo)) {
                 
-                vista.txtNombre.setText(modelo.getNombre());
-                vista.txtCosto.setText(String.valueOf(modelo.getCosto()));
+                    vista.txtNombre.setText(modelo.getNombre());
+                    vista.txtCosto.setText(String.valueOf(modelo.getCosto()));
                 
-                vista.btnEliminar.setEnabled(true);
-                vista.btnInsertar.setEnabled(true);
-                vista.btnModificar.setEnabled(true);
+                    vista.btnEliminar.setEnabled(true);
+                    vista.btnInsertar.setEnabled(true);
+                    vista.btnModificar.setEnabled(true);
+                }
+                else {
+                    Mensajes msj = new Mensajes();
+                    msj.mnencontrado();
+                    vista.limpiar();
+                }
             }
             else {
                 System.out.printf("Error: No hay código escrito");
@@ -57,19 +77,19 @@ public class CServicio implements ActionListener {
             modelo.setCodigo(vista.txtCodigo.getText());
             modelo.setNombre(vista.txtNombre.getText());
             modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
-            crud.insertar(modelo);
+            database.insertar(modelo);
         }
         
         if(e.getSource() == vista.btnModificar) {
             modelo.setCodigo(vista.txtCodigo.getText());
             modelo.setNombre(vista.txtNombre.getText());
             modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
-            crud.insertar(modelo);
+            database.insertar(modelo);
         }
         
         if(e.getSource() == vista.btnEliminar) {
             modelo.setCodigo(vista.txtCodigo.getText());
-            crud.eliminar(modelo);
+            database.eliminar(modelo);
         }
     }
 }

@@ -5,6 +5,7 @@ public class VServicio extends javax.swing.JFrame {
 
     public VServicio() {
         initComponents();
+        limpiar();
     }
     
     public void limpiar() {
@@ -14,7 +15,7 @@ public class VServicio extends javax.swing.JFrame {
         
         btnInsertar.setEnabled(false);
         btnModificar.setEnabled(false);
-        //btnBuscar.setEnabled(false);
+        btnEliminar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -78,14 +79,14 @@ public class VServicio extends javax.swing.JFrame {
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInsertar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir)
                 .addGap(33, 33, 33))
@@ -111,8 +112,8 @@ public class VServicio extends javax.swing.JFrame {
                     .addComponent(btnInsertar)
                     .addComponent(btnModificar)
                     .addComponent(btnCancelar)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnSalir))
+                    .addComponent(btnSalir)
+                    .addComponent(btnEliminar))
                 .addGap(26, 26, 26))
         );
 

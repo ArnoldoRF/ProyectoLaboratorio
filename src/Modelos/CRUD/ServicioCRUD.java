@@ -12,14 +12,15 @@ public class ServicioCRUD extends ConexionDB {
     
     public void insertar(MServicio servicio) {
         String sql = "INSERT INTO public.\"Servicio\" "
-                + "(codigo, nombre, costo) "
-                + "VALUES (?, ?, ?)";
+                + "(codServicio, nombServicio, costo, estatus) "
+                + "VALUES (?, ?, ?, ?)";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, servicio.getCodigo());
+            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
             ps.setString(2, servicio.getNombre());
             ps.setDouble(3, servicio.getCosto());
+            ps.setString(4, "A");
             ps.execute();
         }
         catch(Exception e) {
@@ -28,35 +29,39 @@ public class ServicioCRUD extends ConexionDB {
         desconectar();
     }
     
-    public void consultar(MServicio servicio) {
+    public boolean consultar(MServicio servicio) {
+        boolean encontrado = false;
+        
         String sql = "SELECT * FROM public.\"Servicio\" "
-                + "WHERE codigo=?";
+                + "WHERE \"codServicio\"=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, servicio.getCodigo());
+            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                servicio.setNombre(rs.getString("nombre"));
+                servicio.setNombre(rs.getString("nombServicio"));
                 servicio.setCosto(Double.parseDouble(rs.getString("costo")));
+                encontrado = true;
             }
         }
         catch(Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         desconectar();
+        return encontrado;
     }
     
     public void actualizar(MServicio servicio) {
-        String sql = "UPDATE public.\"Servicio\" SET nombre=?, costo=?) "
-                + "WHERE codigo=?";
+        String sql = "UPDATE public.\"Servicio\" SET nombServicio=?, costo=? "
+                + "WHERE codServicio=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, servicio.getNombre());
             ps.setDouble(2, servicio.getCosto());
-            ps.setString(3, servicio.getCodigo());
+            ps.setInt(3, Integer.parseInt(servicio.getCodigo()));
             ps.execute();
         }
         catch(Exception e) {
@@ -66,12 +71,13 @@ public class ServicioCRUD extends ConexionDB {
     }
     
     public void eliminar(MServicio servicio) {
-        String sql = "DELETE FROM public.\"Servicio\" "
+        String sql = "UPDATE public.\"Servicio\" SET estatus=? "
                 + "WHERE codigo=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, servicio.getCodigo());
+            ps.setString(1, "E");
+            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
             ps.execute();
         }
         catch(Exception e) {

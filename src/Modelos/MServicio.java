@@ -5,7 +5,11 @@ public class MServicio {
     private String codigo, nombre;
     private double costo;
     
-    public MServicio() {}
+    public MServicio() {
+        codigo = "";
+        nombre = "";
+        costo = 0;
+    }
     
     public MServicio(String codigo, String nombre, double costo) {
         this.codigo = codigo;
