@@ -11,8 +11,8 @@ public class ServicioCRUD extends ConexionDB {
     public ServicioCRUD() {}
     
     public void insertar(MServicio servicio) {
-        String sql = "INSERT INTO public.\"Servicio\" "
-                + "(codServicio, nombServicio, costo, estatus) "
+        String sql = "INSERT INTO public.servicio "
+                + "(cod_servicio, nomb_servicio, costo, estatus) "
                 + "VALUES (?, ?, ?, ?)";
         
         conectar();
@@ -32,8 +32,8 @@ public class ServicioCRUD extends ConexionDB {
     public boolean consultar(MServicio servicio) {
         boolean encontrado = false;
         
-        String sql = "SELECT * FROM public.\"Servicio\" "
-                + "WHERE \"codServicio\"=?";
+        String sql = "SELECT * FROM public.servicio "
+                + "WHERE cod_servicio=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
@@ -41,7 +41,7 @@ public class ServicioCRUD extends ConexionDB {
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                servicio.setNombre(rs.getString("nombServicio"));
+                servicio.setNombre(rs.getString("nomb_servicio"));
                 servicio.setCosto(Double.parseDouble(rs.getString("costo")));
                 encontrado = true;
             }
@@ -54,8 +54,8 @@ public class ServicioCRUD extends ConexionDB {
     }
     
     public void actualizar(MServicio servicio) {
-        String sql = "UPDATE public.\"Servicio\" SET nombServicio=?, costo=? "
-                + "WHERE codServicio=?";
+        String sql = "UPDATE public.servicio SET nomb_servicio=?, costo=? "
+                + "WHERE cod_servicio=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
@@ -71,7 +71,7 @@ public class ServicioCRUD extends ConexionDB {
     }
     
     public void eliminar(MServicio servicio) {
-        String sql = "UPDATE public.\"Servicio\" SET estatus=? "
+        String sql = "UPDATE public.servicio SET estatus=? "
                 + "WHERE codigo=?";
         
         conectar();
