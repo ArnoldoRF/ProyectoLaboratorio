@@ -43,7 +43,7 @@ public class VBeneficiario extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtTipo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtCosto = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
@@ -134,6 +134,11 @@ public class VBeneficiario extends javax.swing.JPanel {
         jPanel2.add(jLabel5);
         jLabel5.setBounds(40, 140, 50, 16);
 
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoActionPerformed(evt);
+            }
+        });
         txtTipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTipoKeyTyped(evt);
@@ -142,17 +147,17 @@ public class VBeneficiario extends javax.swing.JPanel {
         jPanel2.add(txtTipo);
         txtTipo.setBounds(100, 130, 270, 30);
 
-        jLabel6.setText("Edad:");
+        jLabel6.setText("Telefono:");
         jPanel2.add(jLabel6);
         jLabel6.setBounds(40, 180, 60, 16);
 
-        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCostoKeyTyped(evt);
+                txtTelefonoKeyTyped(evt);
             }
         });
-        jPanel2.add(txtCosto);
-        txtCosto.setBounds(100, 170, 270, 30);
+        jPanel2.add(txtTelefono);
+        txtTelefono.setBounds(100, 170, 270, 30);
 
         jLabel7.setFont(new java.awt.Font("Aller Light", 0, 12)); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -234,18 +239,22 @@ public class VBeneficiario extends javax.swing.JPanel {
         Validacion.validarLetra(evt);
     }//GEN-LAST:event_txtTipoKeyTyped
 
-    private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         Validacion.validarEntero(evt);
-    }//GEN-LAST:event_txtCostoKeyTyped
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConsular;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnSalir;
+    public javax.swing.JButton btnAgregar;
+    public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnConsular;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnModificar;
+    public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -257,10 +266,10 @@ public class VBeneficiario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCosto;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTipo;
+    public javax.swing.JTextField txtBuscar;
+    public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtTelefono;
+    public javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }
