@@ -56,7 +56,6 @@ public class VServicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 420));
-        setPreferredSize(new java.awt.Dimension(700, 400));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
@@ -141,7 +140,7 @@ public class VServicio extends javax.swing.JFrame {
         jPanel4.setMinimumSize(new java.awt.Dimension(1110, 580));
         jPanel4.setLayout(null);
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(0, 0, 1110, 580);
+        jPanel4.setBounds(0, 0, 700, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
