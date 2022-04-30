@@ -1,156 +1,187 @@
 
 package Vistas;
 
-import java.awt.Color;
-import javax.swing.UIManager;
-
-public class VServicio extends javax.swing.JFrame {
+public class VServicio extends javax.swing.JInternalFrame {
 
     public VServicio() {
         initComponents();
-        limpiar();
-    }
-    
-    public void limpiar() {
-        txtCodigo.setText("");
-        txtNombre.setText("");
-        txtCosto.setText("");
-        
-        btnInsertar.setEnabled(false);
-        btnModificar.setEnabled(false);
-        btnEliminar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnInsertar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
+        base = new javax.swing.JPanel();
+        lbCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        txtCosto = new javax.swing.JTextField();
+        lbNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        lbCosto = new javax.swing.JLabel();
+        txtCosto = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Servicio");
         setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBorder(null);
 
-        jLabel1.setText("Código");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 44, 70, -1));
+        base.setBackground(new java.awt.Color(255, 255, 255));
+        base.setMinimumSize(new java.awt.Dimension(400, 300));
+        base.setPreferredSize(new java.awt.Dimension(400, 300));
 
-        jLabel2.setText("Nombre");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 91, 70, -1));
+        lbCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        lbCodigo.setText("Código");
 
-        jLabel3.setText("Costo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 125, 70, -1));
+        txtCodigo.setBackground(new java.awt.Color(232, 234, 246));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
 
-        btnInsertar.setText("Añadir");
-        btnInsertar.setBorderPainted(false);
-        getContentPane().add(btnInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 249, -1, -1));
-
-        btnModificar.setText("Modificar");
-        btnModificar.setBorderPainted(false);
-        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 249, -1, -1));
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setBorderPainted(false);
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 249, -1, -1));
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setBorderPainted(false);
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 249, -1, -1));
-
-        btnSalir.setText("Salir");
-        btnSalir.setBorderPainted(false);
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 249, -1, -1));
-
-        txtCodigo.setBorder(null);
-        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCodigoMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtCodigoMousePressed(evt);
-            }
-        });
-        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 44, 230, -1));
-
-        btnBuscar.setBackground(new java.awt.Color(51, 51, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        btnBuscar.setBackground(new java.awt.Color(63, 81, 181));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         btnBuscar.setBorderPainted(false);
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 40, -1, -1));
+        btnBuscar.setFocusPainted(false);
+        btnBuscar.setMaximumSize(new java.awt.Dimension(77, 24));
+        btnBuscar.setMinimumSize(new java.awt.Dimension(77, 24));
 
-        txtCosto.setBorder(null);
-        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 125, 276, -1));
+        lbNombre.setBackground(new java.awt.Color(255, 255, 255));
+        lbNombre.setText("Nombre");
 
-        txtNombre.setBorder(null);
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 91, 276, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 234, 10));
+        txtNombre.setBackground(new java.awt.Color(232, 234, 246));
+        txtNombre.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+
+        lbCosto.setBackground(new java.awt.Color(255, 255, 255));
+        lbCosto.setText("Costo");
+
+        txtCosto.setBackground(new java.awt.Color(232, 234, 246));
+        txtCosto.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+
+        btnGuardar.setBackground(new java.awt.Color(63, 81, 181));
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("GUARDAR");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.setFocusPainted(false);
+        btnGuardar.setMaximumSize(new java.awt.Dimension(77, 24));
+        btnGuardar.setMinimumSize(new java.awt.Dimension(77, 24));
+
+        btnEliminar.setBackground(new java.awt.Color(63, 81, 181));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.setMaximumSize(new java.awt.Dimension(77, 24));
+        btnEliminar.setMinimumSize(new java.awt.Dimension(77, 24));
+
+        btnCancelar.setBackground(new java.awt.Color(63, 81, 181));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setFocusPainted(false);
+        btnCancelar.setMaximumSize(new java.awt.Dimension(77, 24));
+        btnCancelar.setMinimumSize(new java.awt.Dimension(77, 24));
+
+        btnRegresar.setBackground(new java.awt.Color(63, 81, 181));
+        btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("REGRESAR");
+        btnRegresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        btnRegresar.setBorderPainted(false);
+        btnRegresar.setFocusPainted(false);
+        btnRegresar.setMaximumSize(new java.awt.Dimension(77, 24));
+        btnRegresar.setMinimumSize(new java.awt.Dimension(77, 24));
+
+        javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
+        base.setLayout(baseLayout);
+        baseLayout.setHorizontalGroup(
+            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addComponent(lbCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCosto))
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNombre))
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
+        );
+        baseLayout.setVerticalGroup(
+            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(base, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodigoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMousePressed
-        if(txtCodigo.getText()=="") {
-            txtCodigo.setText("Ingrese el cógido");
-            txtCodigo.setForeground(Color.GRAY);
-        }
-        if(txtCodigo.getText()!="Ingrese el código") {
-            txtCodigo.setText("");
-            txtCodigo.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_txtCodigoMousePressed
-
-    private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
-        if(txtCodigo.getText()=="") {
-            txtCodigo.setText("Ingrese el cógido");
-            txtCodigo.setForeground(Color.GRAY);
-        }
-        if(txtCodigo.getText()!="Ingrese el código") {
-            txtCodigo.setText("");
-            txtCodigo.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_txtCodigoMouseClicked
-
-    public static void main(String args[]) {
-        
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code">
-        try {
-            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
-        }
-        catch (Exception e) {
-            System.out.println("Error: Estilo no encontrado");
-        }
-        //</editor-fold>
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VServicio().setVisible(true);
-            }
-        });
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel base;
     public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnEliminar;
-    public javax.swing.JButton btnInsertar;
-    public javax.swing.JButton btnModificar;
-    public javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnRegresar;
+    private javax.swing.JLabel lbCodigo;
+    private javax.swing.JLabel lbCosto;
+    private javax.swing.JLabel lbNombre;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtNombre;

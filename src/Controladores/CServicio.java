@@ -13,6 +13,7 @@ public class CServicio implements ActionListener {
     private VServicio vista;
     private MServicio modelo;
     private ServicioCRUD database;
+    private boolean encontrado;
     
     public CServicio(CMenu cmenu){
         //vserv = new VServicio(cmenu.getVMenu(),false,null)
@@ -24,10 +25,11 @@ public class CServicio implements ActionListener {
         database = new ServicioCRUD();
         
         vista.btnBuscar.addActionListener(this);
-        vista.btnInsertar.addActionListener(this);
-        vista.btnModificar.addActionListener(this);
+        //vista.btnInsertar.addActionListener(this);
+        //vista.btnModificar.addActionListener(this);
+        vista.btnGuardar.addActionListener(this);
         vista.btnEliminar.addActionListener(this);
-        vista.btnSalir.addActionListener(this);
+        vista.btnRegresar.addActionListener(this);
         vista.btnCancelar.addActionListener(this);
     }
     
@@ -50,18 +52,20 @@ public class CServicio implements ActionListener {
                 modelo = new MServicio();
                 modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
                 if(database.consultar(modelo)) {
+                    encontrado = true;
                 
                     vista.txtNombre.setText(modelo.getNombre());
                     vista.txtCosto.setText(String.valueOf(modelo.getCosto()));
                 
-                    vista.btnEliminar.setEnabled(true);
-                    vista.btnInsertar.setEnabled(true);
-                    vista.btnModificar.setEnabled(true);
+                    //vista.btnEliminar.setEnabled(true);
+                    //vista.btnInsertar.setEnabled(true);
+                    //vista.btnModificar.setEnabled(true);
                 }
                 else {
                     Mensajes msj = new Mensajes();
                     msj.mnencontrado();
-                    vista.limpiar();
+                    encontrado = false;
+                    //vista.limpiar();
                 }
             }
             else {
@@ -70,21 +74,22 @@ public class CServicio implements ActionListener {
         }
         
         if(e.getSource() == vista.btnCancelar)  {
-            vista.limpiar();
+            //vista.limpiar();
         }
         
-        if(e.getSource() == vista.btnInsertar) {
-            modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
-            modelo.setNombre(vista.txtNombre.getText());
-            modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
-            database.insertar(modelo);
-        }
-        
-        if(e.getSource() == vista.btnModificar) {
-            modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
-            modelo.setNombre(vista.txtNombre.getText());
-            modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
-            database.insertar(modelo);
+        if(e.getSource() == vista.btnGuardar) {
+            if(encontrado) {
+                modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
+                modelo.setNombre(vista.txtNombre.getText());
+                modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
+                database.actualizar(modelo);
+            }
+            else {
+                modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
+                modelo.setNombre(vista.txtNombre.getText());
+                modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
+                database.insertar(modelo);
+            }
         }
         
         if(e.getSource() == vista.btnEliminar) {
