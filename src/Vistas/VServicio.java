@@ -1,6 +1,9 @@
 
 package Vistas;
 
+import java.awt.Color;
+import javax.swing.UIManager;
+
 public class VServicio extends javax.swing.JFrame {
 
     public VServicio() {
@@ -34,118 +37,102 @@ public class VServicio extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         txtCosto = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Servicio");
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Código");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 44, 70, -1));
 
         jLabel2.setText("Nombre");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 91, 70, -1));
 
         jLabel3.setText("Costo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 125, 70, -1));
 
         btnInsertar.setText("Añadir");
+        btnInsertar.setBorderPainted(false);
+        getContentPane().add(btnInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 249, -1, -1));
 
         btnModificar.setText("Modificar");
+        btnModificar.setBorderPainted(false);
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 249, -1, -1));
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.setBorderPainted(false);
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 249, -1, -1));
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 249, -1, -1));
 
         btnSalir.setText("Salir");
+        btnSalir.setBorderPainted(false);
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 249, -1, -1));
 
+        txtCodigo.setBorder(null);
+        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodigoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCodigoMousePressed(evt);
+            }
+        });
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 44, 230, -1));
+
+        btnBuscar.setBackground(new java.awt.Color(51, 51, 255));
         btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        btnBuscar.setBorderPainted(false);
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 40, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCosto))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInsertar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir)
-                .addGap(33, 33, 33))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInsertar)
-                    .addComponent(btnModificar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSalir)
-                    .addComponent(btnEliminar))
-                .addGap(26, 26, 26))
-        );
+        txtCosto.setBorder(null);
+        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 125, 276, -1));
+
+        txtNombre.setBorder(null);
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 91, 276, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 234, 10));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtCodigoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMousePressed
+        if(txtCodigo.getText()=="") {
+            txtCodigo.setText("Ingrese el cógido");
+            txtCodigo.setForeground(Color.GRAY);
+        }
+        if(txtCodigo.getText()!="Ingrese el código") {
+            txtCodigo.setText("");
+            txtCodigo.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtCodigoMousePressed
+
+    private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
+        if(txtCodigo.getText()=="") {
+            txtCodigo.setText("Ingrese el cógido");
+            txtCodigo.setForeground(Color.GRAY);
+        }
+        if(txtCodigo.getText()!="Ingrese el código") {
+            txtCodigo.setText("");
+            txtCodigo.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtCodigoMouseClicked
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code">
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
+        }
+        catch (Exception e) {
+            System.out.println("Error: Estilo no encontrado");
         }
         //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VServicio().setVisible(true);
@@ -163,6 +150,7 @@ public class VServicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtNombre;
