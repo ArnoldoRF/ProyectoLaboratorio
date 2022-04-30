@@ -1,13 +1,12 @@
 
 package main;
 
-import Controladores.CServicio;
+import Controladores.CMenu;
 
 public class Principal {
 
     public static void main(String[] args) {
-        CServicio servicio = new CServicio();
-        servicio.getVista().setVisible(true);
+        CMenu menu = new CMenu();
     }
     
 }

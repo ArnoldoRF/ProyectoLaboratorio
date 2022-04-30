@@ -1,7 +1,7 @@
-
 package Controladores;
 
 import Modelos.MServicio;
+import Controladores.CMenu;
 import Vistas.VServicio;
 import Modelos.CRUD.ServicioCRUD;
 import Generales.Mensajes;
@@ -9,16 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CServicio implements ActionListener {
-    
+    private CMenu cmenu;
     private VServicio vista;
     private MServicio modelo;
     private ServicioCRUD database;
     
-    public CServicio(CMenu cmenu){
-        //vserv = new VServicio1(cmenu.getVMenu(),false,null)
-    }
-    
-    public CServicio() {
+    public CServicio(CMenu cmenu) {
         vista = new VServicio();
         modelo = new MServicio();
         database = new ServicioCRUD();
@@ -84,7 +80,7 @@ public class CServicio implements ActionListener {
             modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
             modelo.setNombre(vista.txtNombre.getText());
             modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
-            database.insertar(modelo);
+            database.actualizar(modelo);
         }
         
         if(e.getSource() == vista.btnEliminar) {

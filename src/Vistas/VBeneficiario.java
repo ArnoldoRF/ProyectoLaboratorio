@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package Vistas;
 
@@ -11,13 +11,13 @@ import Generales.Validacion;
  *
  * @author Khaal
  */
-public class VBeneficiario extends javax.swing.JPanel {
-        private Mensajes msj;
+public class VBeneficiario extends javax.swing.JDialog {
+private Mensajes msj;
     /**
-     * Creates new form VResponsable
+     * Creates new form VBeneficiario2
      */
-    public VBeneficiario() {
-        
+    public VBeneficiario(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -31,11 +31,12 @@ public class VBeneficiario extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnConsular = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -45,7 +46,7 @@ public class VBeneficiario extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtCosto = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -53,15 +54,17 @@ public class VBeneficiario extends javax.swing.JPanel {
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(50, 255, 181));
-        setPreferredSize(new java.awt.Dimension(666, 300));
-        setLayout(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(50, 255, 181));
+        jPanel1.setPreferredSize(new java.awt.Dimension(666, 300));
         jPanel1.setLayout(null);
 
+        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel2.setLayout(null);
+
         jLabel2.setText("Cedula:");
-        jPanel1.add(jLabel2);
+        jPanel2.add(jLabel2);
         jLabel2.setBounds(20, 26, 50, 30);
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +80,7 @@ public class VBeneficiario extends javax.swing.JPanel {
                 txtBuscarKeyTyped(evt);
             }
         });
-        jPanel1.add(txtBuscar);
+        jPanel2.add(txtBuscar);
         txtBuscar.setBounds(70, 20, 230, 40);
 
         btnConsular.setText("Consultar");
@@ -91,23 +94,23 @@ public class VBeneficiario extends javax.swing.JPanel {
                 btnConsularKeyPressed(evt);
             }
         });
-        jPanel1.add(btnConsular);
+        jPanel2.add(btnConsular);
         btnConsular.setBounds(310, 20, 100, 40);
 
         jLabel8.setFont(new java.awt.Font("Aller Light", 0, 12)); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Busqueda", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel8);
+        jPanel2.add(jLabel8);
         jLabel8.setBounds(0, 0, 430, 80);
 
-        add(jPanel1);
-        jPanel1.setBounds(30, 20, 430, 80);
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(30, 20, 430, 80);
 
-        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel2.setLayout(null);
+        jPanel3.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel3.setLayout(null);
 
         jLabel3.setText("Cedula");
-        jPanel2.add(jLabel3);
+        jPanel3.add(jLabel3);
         jLabel3.setBounds(40, 60, 50, 16);
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -115,11 +118,11 @@ public class VBeneficiario extends javax.swing.JPanel {
                 txtCodigoKeyTyped(evt);
             }
         });
-        jPanel2.add(txtCodigo);
+        jPanel3.add(txtCodigo);
         txtCodigo.setBounds(100, 50, 270, 30);
 
         jLabel4.setText("Nombre:");
-        jPanel2.add(jLabel4);
+        jPanel3.add(jLabel4);
         jLabel4.setBounds(40, 100, 50, 16);
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -127,11 +130,11 @@ public class VBeneficiario extends javax.swing.JPanel {
                 txtNombreKeyTyped(evt);
             }
         });
-        jPanel2.add(txtNombre);
+        jPanel3.add(txtNombre);
         txtNombre.setBounds(100, 90, 270, 30);
 
         jLabel5.setText("Apellido:");
-        jPanel2.add(jLabel5);
+        jPanel3.add(jLabel5);
         jLabel5.setBounds(40, 140, 50, 16);
 
         txtTipo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -139,11 +142,11 @@ public class VBeneficiario extends javax.swing.JPanel {
                 txtTipoKeyTyped(evt);
             }
         });
-        jPanel2.add(txtTipo);
+        jPanel3.add(txtTipo);
         txtTipo.setBounds(100, 130, 270, 30);
 
         jLabel6.setText("Edad:");
-        jPanel2.add(jLabel6);
+        jPanel3.add(jLabel6);
         jLabel6.setBounds(40, 180, 60, 16);
 
         txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -151,49 +154,72 @@ public class VBeneficiario extends javax.swing.JPanel {
                 txtCostoKeyTyped(evt);
             }
         });
-        jPanel2.add(txtCosto);
+        jPanel3.add(txtCosto);
         txtCosto.setBounds(100, 170, 270, 30);
 
         jLabel7.setFont(new java.awt.Font("Aller Light", 0, 12)); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(jLabel7);
+        jPanel3.add(jLabel7);
         jLabel7.setBounds(0, 0, 430, 250);
 
-        add(jPanel2);
-        jPanel2.setBounds(30, 120, 430, 250);
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(30, 120, 430, 250);
 
-        jPanel3.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel3.setLayout(null);
+        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel4.setLayout(null);
 
         btnAgregar.setText("Agregar");
-        jPanel3.add(btnAgregar);
+        jPanel4.add(btnAgregar);
         btnAgregar.setBounds(30, 40, 110, 30);
 
         btnModificar.setText("Modificar");
-        jPanel3.add(btnModificar);
+        jPanel4.add(btnModificar);
         btnModificar.setBounds(30, 80, 110, 30);
 
         btnEliminar.setText("Eliminar");
-        jPanel3.add(btnEliminar);
+        jPanel4.add(btnEliminar);
         btnEliminar.setBounds(30, 120, 110, 30);
 
         btnCancelar.setText("Cancelar");
-        jPanel3.add(btnCancelar);
+        jPanel4.add(btnCancelar);
         btnCancelar.setBounds(30, 160, 110, 30);
 
         btnSalir.setText("Salir");
-        jPanel3.add(btnSalir);
+        jPanel4.add(btnSalir);
         btnSalir.setBounds(30, 200, 110, 30);
 
         jLabel1.setFont(new java.awt.Font("Aller Light", 0, 12)); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Operaciones", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel3.add(jLabel1);
+        jPanel4.add(jLabel1);
         jLabel1.setBounds(0, 0, 170, 250);
 
-        add(jPanel3);
-        jPanel3.setBounds(490, 120, 170, 250);
+        jPanel1.add(jPanel4);
+        jPanel4.setBounds(490, 120, 170, 250);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 686, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -210,6 +236,10 @@ public class VBeneficiario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtBuscarKeyPressed
 
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        Validacion.validarAlfanumerico(evt);
+    }//GEN-LAST:event_txtBuscarKeyTyped
+
     private void btnConsularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsularActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsularActionPerformed
@@ -217,10 +247,6 @@ public class VBeneficiario extends javax.swing.JPanel {
     private void btnConsularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnConsularKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsularKeyPressed
-
-    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
-        Validacion.validarAlfanumerico(evt);
-    }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         Validacion.validarAlfanumerico(evt);
@@ -238,6 +264,10 @@ public class VBeneficiario extends javax.swing.JPanel {
         Validacion.validarEntero(evt);
     }//GEN-LAST:event_txtCostoKeyTyped
 
+    /**
+     * @param args the command line arguments
+     */
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -257,6 +287,7 @@ public class VBeneficiario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;

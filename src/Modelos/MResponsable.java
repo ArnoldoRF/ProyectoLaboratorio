@@ -3,12 +3,14 @@ package Modelos;
 
 public class MResponsable extends MPersona {
 
-    private int codigoFundacion;
+    private String codigoFundacion;
     
-    public MResponsable() {}
+    public MResponsable() {
+        codigoFundacion="";
+    }
     
     public MResponsable(String cedula, String nombre, String apellido,
-            String telefono, int codigoFundacion) {
+            String telefono, String codigoFundacion) {
         
         this.cedula = cedula;
         this.nombre = nombre;
@@ -17,11 +19,11 @@ public class MResponsable extends MPersona {
         this.codigoFundacion = codigoFundacion;
     }
     
-    public int getCodigoFundacion() {
+    public String getCodigoFundacion() {
         return codigoFundacion;
     }
 
-    public void setCodigoFundacion(int codigoFundacion) {
+    public void setCodigoFundacion(String codigoFundacion) {
         this.codigoFundacion = codigoFundacion;
     }
 

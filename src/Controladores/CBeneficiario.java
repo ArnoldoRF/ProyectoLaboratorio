@@ -13,5 +13,9 @@ import Modelos.MPersona;
  */
 public class CBeneficiario {
     private MPersona mpers = new MPersona();
+
+    CBeneficiario(CMenu aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

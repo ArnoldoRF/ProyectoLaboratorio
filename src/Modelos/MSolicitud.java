@@ -1,35 +1,51 @@
-
 package Modelos;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 
 public class MSolicitud {
-    private int codigo;
+    private String codigo;
     private String cedulaResponsable;
     private String cedulaBeneficiario;
-    private int codigoFundacion;
-    private LocalDate fechaCreacion;
-    private LocalDate fechaAprobacion;
+    private String codigoFundacion;
+    private String prioridad;
+    private Date fechaCreacion;
+    private Date fechaAprobacion;
     
-    public MSolicitud() {}
+    public MSolicitud() {
+        codigo="";
+        cedulaResponsable="";
+        cedulaBeneficiario="";
+        codigoFundacion= "";
+        prioridad="";
+    }
     
-    public MSolicitud(int codigo, String cedulaResponsable, String cedulaBeneficiario,
-            int codigoFundacion, LocalDate fechaCreacion, LocalDate fechaAprobacion) {
+    public MSolicitud(String codigo, String cedulaResponsable, String cedulaBeneficiario,
+            String codigoFundacion, String prioridad, Date fechaCreacion, Date fechaAprobacion) {
         
         this.codigo = codigo;
         this.cedulaResponsable = cedulaResponsable;
         this.cedulaBeneficiario = cedulaBeneficiario;
         this.codigoFundacion = codigoFundacion;
+        this.prioridad = prioridad;
         this.fechaAprobacion = fechaAprobacion;
         this.fechaCreacion = fechaCreacion;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
     }
 
     public String getCedulaResponsable() {
@@ -48,27 +64,27 @@ public class MSolicitud {
         this.cedulaBeneficiario = cedulaBeneficiario;
     }
 
-    public int getCodigoFundacion() {
+    public String getCodigoFundacion() {
         return codigoFundacion;
     }
 
-    public void setCodigoFundacion(int codigoFundacion) {
+    public void setCodigoFundacion(String codigoFundacion) {
         this.codigoFundacion = codigoFundacion;
     }
 
-    public LocalDate getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDate getFechaAprovacion() {
+    public Date getFechaAprovacion() {
         return fechaAprobacion;
     }
 
-    public void setFechaAprovacion(LocalDate fechaAprovacion) {
+    public void setFechaAprovacion(Date fechaAprovacion) {
         this.fechaAprobacion = fechaAprovacion;
     }
     
