@@ -7,6 +7,7 @@ public class MPersona  {
     protected String nombre;
     protected String apellido;
     protected String telefono;
+    protected String estatus;
 
     public String getCedula() {
         return cedula;
@@ -39,5 +40,12 @@ public class MPersona  {
     public void setTelefono(String teledono) {
         this.telefono = teledono;
     }
-
+    
+    public String getEstatus() {
+        return estatus;
+    }
+    
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
 }

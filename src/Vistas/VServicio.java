@@ -1,10 +1,11 @@
 
 package Vistas;
 
-public class VServicio extends javax.swing.JInternalFrame {
+public class VServicio extends javax.swing.JFrame {
 
     public VServicio() {
         initComponents();
+        reiniciar();
     }
 
     @SuppressWarnings("unchecked")
@@ -24,12 +25,13 @@ public class VServicio extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Servicio");
+        setResizable(false);
+        setSize(new java.awt.Dimension(400, 300));
 
         base.setBackground(new java.awt.Color(255, 255, 255));
         base.setMinimumSize(new java.awt.Dimension(400, 300));
-        base.setPreferredSize(new java.awt.Dimension(400, 300));
 
         lbCodigo.setBackground(new java.awt.Color(255, 255, 255));
         lbCodigo.setText("Código");
@@ -43,9 +45,15 @@ public class VServicio extends javax.swing.JInternalFrame {
         btnBuscar.setText("BUSCAR");
         btnBuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         btnBuscar.setBorderPainted(false);
+        btnBuscar.setEnabled(false);
         btnBuscar.setFocusPainted(false);
         btnBuscar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnBuscar.setMinimumSize(new java.awt.Dimension(77, 24));
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseEntered(evt);
+            }
+        });
 
         lbNombre.setBackground(new java.awt.Color(255, 255, 255));
         lbNombre.setText("Nombre");
@@ -65,6 +73,7 @@ public class VServicio extends javax.swing.JInternalFrame {
         btnGuardar.setText("GUARDAR");
         btnGuardar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         btnGuardar.setBorderPainted(false);
+        btnGuardar.setEnabled(false);
         btnGuardar.setFocusPainted(false);
         btnGuardar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnGuardar.setMinimumSize(new java.awt.Dimension(77, 24));
@@ -75,6 +84,7 @@ public class VServicio extends javax.swing.JInternalFrame {
         btnEliminar.setText("ELIMINAR");
         btnEliminar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         btnEliminar.setBorderPainted(false);
+        btnEliminar.setEnabled(false);
         btnEliminar.setFocusPainted(false);
         btnEliminar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnEliminar.setMinimumSize(new java.awt.Dimension(77, 24));
@@ -171,7 +181,34 @@ public class VServicio extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseEntered
+        btnBuscar.setEnabled(!txtCodigo.getText().isBlank());
+    }//GEN-LAST:event_btnBuscarMouseEntered
+
+    public void limpiar() {
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtCosto.setText("");
+    }
     
+    public void reiniciar() {
+        limpiar();
+        
+        btnBuscar.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+    }
+    
+    public static void main(String args[]) {
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VServicio().setVisible(true);
+            }
+        });
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel base;
     public javax.swing.JButton btnBuscar;

@@ -14,23 +14,17 @@ public class CServicio implements ActionListener {
     private MServicio modelo;
     private ServicioCRUD database;
     private boolean encontrado;
-    
-    public CServicio(CMenu cmenu){
-        //vserv = new VServicio(cmenu.getVMenu(),false,null)
-    }
-    
+        
     public CServicio() {
         vista = new VServicio();
         modelo = new MServicio();
         database = new ServicioCRUD();
         
-        vista.btnBuscar.addActionListener(this);
-        //vista.btnInsertar.addActionListener(this);
-        //vista.btnModificar.addActionListener(this);
-        vista.btnGuardar.addActionListener(this);
-        vista.btnEliminar.addActionListener(this);
+        vista.btnBuscar.addActionListener(e -> buscar());
+        vista.btnGuardar.addActionListener(e -> guardar());
+        vista.btnEliminar.addActionListener(e -> eliminar());
         vista.btnRegresar.addActionListener(this);
-        vista.btnCancelar.addActionListener(this);
+        vista.btnCancelar.addActionListener(e -> limpiar());
     }
     
     public VServicio getVista() {
@@ -45,56 +39,51 @@ public class CServicio implements ActionListener {
         return database;
     }
     
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == vista.btnBuscar) {
-            if(vista.txtCodigo.getText() != "") {
+    private void buscar() {
+     
+        
+        if(vista.txtCodigo.getText() != "") {
                 modelo = new MServicio();
                 modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
-                if(database.consultar(modelo)) {
-                    encontrado = true;
+                encontrado = database.consultar(modelo);
                 
+                if(encontrado) {
                     vista.txtNombre.setText(modelo.getNombre());
                     vista.txtCosto.setText(String.valueOf(modelo.getCosto()));
-                
-                    //vista.btnEliminar.setEnabled(true);
-                    //vista.btnInsertar.setEnabled(true);
-                    //vista.btnModificar.setEnabled(true);
                 }
                 else {
                     Mensajes msj = new Mensajes();
                     msj.mnencontrado();
-                    encontrado = false;
-                    //vista.limpiar();
+                    vista.limpiar();
                 }
             }
             else {
                 System.out.printf("Error: No hay código escrito");
             }
-        }
+    }
+    
+    private void limpiar() {
+        vista.limpiar();
+    }
+    
+    private void eliminar() {
+        database.eliminar(modelo);
+    }
+    
+    private void guardar() {
+        modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
+        modelo.setNombre(vista.txtNombre.getText());
+        modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
+        modelo.setEstatus("A");
         
-        if(e.getSource() == vista.btnCancelar)  {
-            //vista.limpiar();
-        }
-        
-        if(e.getSource() == vista.btnGuardar) {
-            if(encontrado) {
-                modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
-                modelo.setNombre(vista.txtNombre.getText());
-                modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
-                database.actualizar(modelo);
-            }
-            else {
-                modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
-                modelo.setNombre(vista.txtNombre.getText());
-                modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
-                database.insertar(modelo);
-            }
-        }
-        
-        if(e.getSource() == vista.btnEliminar) {
-            modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
-            database.eliminar(modelo);
-        }
+        if(encontrado)
+            database.actualizar(modelo);
+        else
+            database.insertar(modelo);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
