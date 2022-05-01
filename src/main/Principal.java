@@ -1,6 +1,5 @@
 
 package main;
-
 import Controladores.CServicio;
 
 public class Principal {
@@ -9,5 +8,4 @@ public class Principal {
         CServicio servicio = new CServicio();
         servicio.getVista().setVisible(true);
     }
-    
 }

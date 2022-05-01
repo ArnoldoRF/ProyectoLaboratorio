@@ -1,16 +1,10 @@
-
 package Modelos.CRUD;
 
 import Modelos.MResponsable;
 import Modelos.Database.ConexionDB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
-/**
- *
- * @author josue
- */
+
 public class ResponsableCRUD extends ConexionDB{
     
     public ResponsableCRUD(){}
@@ -25,9 +19,9 @@ public class ResponsableCRUD extends ConexionDB{
             ps.setString(1, resp.getCedula());
             ps.setString(2, resp.getNombre());
             ps.setString(3, resp.getApellido());
-            ps.setInt(4, Integer.parseInt(resp.getCodigoFundacion()));
+            ps.setInt(4, resp.getCodigoFundacion());
             ps.setString(5, resp.getTelefono());
-            ps.setString(6, "A");
+            ps.setString(6, resp.getEstatus());
             ps.execute();
         }
         catch(Exception e) {
@@ -48,10 +42,11 @@ public class ResponsableCRUD extends ConexionDB{
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                resp.setNombre(rs.getNString("nombre"));
-                resp.setApellido(rs.getNString("apellido"));
-                resp.setCodigoFundacion(rs.getNString("cod_fund"));
-                resp.setTelefono(rs.getNString("telefono"));
+                resp.setNombre(rs.getString("nombre"));
+                resp.setApellido(rs.getString("apellido"));
+                resp.setCodigoFundacion(Integer.parseInt(rs.getString("cod_fund")));
+                resp.setTelefono(rs.getString("telefono"));
+                resp.setEstatus(rs.getString("estatus"));
                 encontrado = true;
             }
         }
@@ -70,9 +65,10 @@ public class ResponsableCRUD extends ConexionDB{
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, resp.getNombre());
             ps.setString(2, resp.getApellido());
-            ps.setInt(3, Integer.parseInt(resp.getCodigoFundacion()));
+            ps.setInt(3, resp.getCodigoFundacion());
             ps.setString(4, resp.getTelefono());
-            ps.setString(5, "A");
+            ps.setString(5, resp.getEstatus());
+            ps.setString(6, resp.getCedula());
             
             ps.execute();
         }
@@ -89,7 +85,7 @@ public class ResponsableCRUD extends ConexionDB{
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "E");
-            ps.setInt(1, Integer.parseInt(resp.getCedula()));
+            ps.setString(1, resp.getCedula());
             ps.execute();
         }
         catch(Exception e) {
