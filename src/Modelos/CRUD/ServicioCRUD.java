@@ -74,12 +74,12 @@ public class ServicioCRUD extends ConexionDB {
     
     public void eliminar(MServicio servicio) {
         String sql = "UPDATE public.servicio SET estatus=? "
-                + "WHERE codigo=?";
+                + "WHERE cod_servicio=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "E");
-            ps.setInt(1, servicio.getCodigo());
+            ps.setInt(2, servicio.getCodigo());
             ps.execute();
         }
         catch(Exception e) {

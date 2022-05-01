@@ -1,10 +1,25 @@
 
 package Vistas;
 
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.plaf.metal.MetalButtonUI;
+
 public class VServicio extends javax.swing.JFrame {
 
+    private MetalButtonUI disabledText = 
+            new MetalButtonUI() {
+                protected Color getDisabledTextColor() {
+                    return new Color(63, 81, 181);
+                }
+            };
+    
     public VServicio() {
         initComponents();
+        
+        btnGuardar.setUI(disabledText);
+        btnEliminar.setUI(disabledText);
+        
         reiniciar();
     }
 
@@ -45,15 +60,9 @@ public class VServicio extends javax.swing.JFrame {
         btnBuscar.setText("BUSCAR");
         btnBuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         btnBuscar.setBorderPainted(false);
-        btnBuscar.setEnabled(false);
         btnBuscar.setFocusPainted(false);
         btnBuscar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnBuscar.setMinimumSize(new java.awt.Dimension(77, 24));
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseEntered(evt);
-            }
-        });
 
         lbNombre.setBackground(new java.awt.Color(255, 255, 255));
         lbNombre.setText("Nombre");
@@ -73,7 +82,6 @@ public class VServicio extends javax.swing.JFrame {
         btnGuardar.setText("GUARDAR");
         btnGuardar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         btnGuardar.setBorderPainted(false);
-        btnGuardar.setEnabled(false);
         btnGuardar.setFocusPainted(false);
         btnGuardar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnGuardar.setMinimumSize(new java.awt.Dimension(77, 24));
@@ -84,7 +92,6 @@ public class VServicio extends javax.swing.JFrame {
         btnEliminar.setText("ELIMINAR");
         btnEliminar.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         btnEliminar.setBorderPainted(false);
-        btnEliminar.setEnabled(false);
         btnEliminar.setFocusPainted(false);
         btnEliminar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnEliminar.setMinimumSize(new java.awt.Dimension(77, 24));
@@ -182,10 +189,6 @@ public class VServicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseEntered
-        btnBuscar.setEnabled(!txtCodigo.getText().isBlank());
-    }//GEN-LAST:event_btnBuscarMouseEntered
-
     public void limpiar() {
         txtCodigo.setText("");
         txtNombre.setText("");
@@ -195,9 +198,18 @@ public class VServicio extends javax.swing.JFrame {
     public void reiniciar() {
         limpiar();
         
-        btnBuscar.setEnabled(false);
-        btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(false);
+        desactivarBoton(btnGuardar);
+        desactivarBoton(btnEliminar);
+    }
+    
+    public void activarBoton(JButton boton) {
+        boton.setEnabled(true);
+        boton.setContentAreaFilled(true);
+    }
+    
+    public void desactivarBoton(JButton boton) {
+        boton.setEnabled(false);
+        boton.setContentAreaFilled(false);
     }
     
     public static void main(String args[]) {
