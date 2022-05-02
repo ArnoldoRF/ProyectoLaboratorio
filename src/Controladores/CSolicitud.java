@@ -54,28 +54,7 @@ public class CSolicitud implements ActionListener {
     }
     
     public void cargarFundaciones() {
-            /*ConexionDB conn = new ConexionDB();
-            conn.conectar();
-        
-            String sql = "SELECT cod_fund, nombre_fund FROM public.fundacion "
-                        + "WHERE estatus=?";
-        
-            try(PreparedStatement ps = conn.con.prepareStatement(sql)) {
-                ps.setString(1, "A");
-                ResultSet rs = ps.executeQuery();
-                
-                while(rs.next()) {
-                    MFundacion fundacion = new MFundacion();
-                    fundacion.setCodigo(Integer.parseInt(rs.getString("cod_fund")));
-                    fundacion.setNombre(rs.getString("nombre_fund"));
-                    vista.boxFundacion.addItem(fundacion.getNombre());
-                }
-            }
-            catch(Exception e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-            conn.desconectar();*/
-            ArrayList<MFundacion> fundaciones = new FundacionCRUD().optenerFundaciones();
+            fundaciones = new FundacionCRUD().optenerFundaciones();
             for(MFundacion fundacion : fundaciones) {
                 vista.boxFundacion.addItem(fundacion.getNombre());
             }
@@ -83,16 +62,10 @@ public class CSolicitud implements ActionListener {
     
     public void consultar() {
         if(!vista.txtCedula.getText().isBlank()) {
-                MBeneficiario beneficiario = new MBeneficiario();
-                beneficiario.setCedula(vista.txtCedula.getText());
-                encontrado = new BeneficiarioCRUD().consultar(beneficiario);
-                
-                if(!encontrado || !beneficiario.getEstatus().contentEquals("A")) {
+                if(!(new BeneficiarioCRUD().consultar(vista.txtCedula.getText()))) {
                     Mensajes msj = new Mensajes();
                     msj.mnencontrado();
-                    //vista.limpiar();
                 }
-                System.out.println("nanana");
             }
             else {
                 System.out.printf("Error: No hay código escrito");
