@@ -1,17 +1,28 @@
 
 package Vistas;
 
+import java.awt.event.ItemEvent;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 public class VSolicitud extends javax.swing.JFrame {
 
     public VSolicitud() {
         initComponents();
         txtCodigo.setEditable(false);
-        //boxFundacion.setEnabled(false);
+        boxFundacion.setEnabled(false);
         boxPrioridad.setEnabled(false);
         txtResponsable.setEditable(false);
         btnGuardar.setEnabled(false);
-        txtCedula.setText("");
+        txtCedula.setText("");   
+        boxFundacion.addItemListener(this::cambio);
         
+    }
+    
+    public void cambio(ItemEvent e) {
+        if(e.getStateChange() == ItemEvent.SELECTED){
+            System.out.println(boxFundacion.getSelectedItem() + "Objeto");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -43,13 +54,7 @@ public class VSolicitud extends javax.swing.JFrame {
 
         tablaServicio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Consulta", null},
-                {"Psicologo", null},
-                {"The", null},
-                {"Rata", null},
-                {"Alada", null},
-                {"Nada", null},
-                {"Nada", null}
+
             },
             new String [] {
                 "SERVICIO", ""
@@ -127,6 +132,19 @@ public class VSolicitud extends javax.swing.JFrame {
         boxFundacion.setBackground(new java.awt.Color(232, 234, 246));
         boxFundacion.setFocusable(false);
         boxFundacion.setLightWeightPopupEnabled(false);
+        boxFundacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boxFundacionMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                boxFundacionMouseReleased(evt);
+            }
+        });
+        boxFundacion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                boxFundacionPropertyChange(evt);
+            }
+        });
 
         lbPrioridad.setBackground(new java.awt.Color(255, 255, 255));
         lbPrioridad.setText("Prioridad");
@@ -238,6 +256,18 @@ public class VSolicitud extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boxFundacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxFundacionMouseClicked
+        //System.out.println(boxFundacion.getSelectedItem());
+    }//GEN-LAST:event_boxFundacionMouseClicked
+
+    private void boxFundacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxFundacionMouseReleased
+        //System.out.println(boxFundacion.getSelectedItem() + "sdf");
+    }//GEN-LAST:event_boxFundacionMouseReleased
+
+    private void boxFundacionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_boxFundacionPropertyChange
+        //System.out.println(boxFundacion.getSelectedItem() + "cambio");
+    }//GEN-LAST:event_boxFundacionPropertyChange
 
     public static void main(String args[]) {
 

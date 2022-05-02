@@ -10,14 +10,9 @@ import Modelos.MBeneficiario;
 import Modelos.CRUD.BeneficiarioCRUD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import Modelos.MServicio;
 import Modelos.MFundacion;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import Modelos.Database.ConexionDB;
 
 public class CSolicitud implements ActionListener {
     
@@ -28,12 +23,13 @@ public class CSolicitud implements ActionListener {
     private boolean encontrado;
     
     private ArrayList<MFundacion> fundaciones;
+    private ArrayList<MServicio> servicios;
     
     public CSolicitud() {
         vista = new VSolicitud();
         modelo = new MSolicitud();
         database = new SolicitudCRUD();
-        cargarFundaciones();
+        //cargarFundaciones();
         
         vista.btnConsultar.addActionListener(e -> consultar());
         //vista.btnGuardar.addActionListener(e -> guardar());
@@ -54,17 +50,23 @@ public class CSolicitud implements ActionListener {
     }
     
     public void cargarFundaciones() {
-            fundaciones = new FundacionCRUD().optenerFundaciones();
-            for(MFundacion fundacion : fundaciones) {
-                vista.boxFundacion.addItem(fundacion.getNombre());
-            }
+        fundaciones = new FundacionCRUD().optenerFundaciones();
+        vista.boxFundacion.addItem("");
+        for(MFundacion fundacion : fundaciones) {
+            vista.boxFundacion.addItem(fundacion.getNombre());
+        }
     }
     
     public void consultar() {
         if(!vista.txtCedula.getText().isBlank()) {
-                if(!(new BeneficiarioCRUD().consultar(vista.txtCedula.getText()))) {
+            encontrado = new BeneficiarioCRUD().consultar(vista.txtCedula.getText());
+                if(!encontrado) {
                     Mensajes msj = new Mensajes();
                     msj.mnencontrado();
+                }
+                else {
+                    vista.boxFundacion.setEnabled(true);
+                    cargarFundaciones();
                 }
             }
             else {
