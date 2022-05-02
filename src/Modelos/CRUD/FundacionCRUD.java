@@ -1,6 +1,7 @@
 package Modelos.CRUD;
 
 import Modelos.Database.ConexionDB;
+import Modelos.MBeneficiario;
 import Modelos.MFundacion;
 import Modelos.MServicio;
 import java.sql.PreparedStatement;
@@ -149,6 +150,38 @@ public class FundacionCRUD extends ConexionDB {
         }
         desconectar();
         return servicios;
+    }
+    
+    public ArrayList<MBeneficiario> optenerBeneficiario(String codigoFundacion) {
+        ArrayList<MBeneficiario> beneficiarios = new ArrayList<MBeneficiario>();
+        String sql = "SELECT * FROM public.beneficiario b JOIN "
+                + "public.solicitud s ON b.cedula_benef = s.cedula_benef "
+                + "JOIN public.fundacion f ON s.cod_fund = f.cod_fund "
+                + "WHERE f.cod_fund = ?";
+        
+        //"SELECT * FROM public.servicio s JOIN public.serv_fund s_f ON s.cod_servicio = s_f.cod_servicio WHERE cod_fund = ?";
+        
+        conectar();
+        try(PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, Integer.parseInt(codigoFundacion));
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                MBeneficiario beneficiario = new MBeneficiario();
+                beneficiario.setCedula(rs.getString("cedula_benef"));
+                beneficiario.setNombre(rs.getString("nombre"));
+                beneficiario.setApellido(rs.getString("apellido"));
+                beneficiario.setTelefono(rs.getString("telefono"));
+                beneficiario.setEstatus(rs.getString("estatus"));
+                
+                beneficiarios.add(beneficiario);
+            }
+        }
+        catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        desconectar();
+        return beneficiarios;
     }
 }
 
