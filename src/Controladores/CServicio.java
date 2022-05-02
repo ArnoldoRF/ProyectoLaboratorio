@@ -20,6 +20,7 @@ public class CServicio implements ActionListener {
         vista = new VServicio();
         modelo = new MServicio();
         database = new ServicioCRUD();
+        vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
         vista.btnGuardar.addActionListener(e -> guardar());
@@ -113,6 +114,6 @@ public class CServicio implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 }

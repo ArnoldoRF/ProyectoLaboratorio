@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Vistas/VSolicitud.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Controladores/CSolicitud.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Modelos/CRUD/BeneficiarioCRUD.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Modelos/MFundacion.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Vistas/VServicio.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Vistas/VListadoSolicitante.java</file>
         </group>
     </open-files>
 </project-private>
