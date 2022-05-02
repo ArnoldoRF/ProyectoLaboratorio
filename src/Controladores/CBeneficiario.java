@@ -88,7 +88,7 @@ public class CBeneficiario implements ActionListener {
     }
     
         
-        private void reactivar() {
+    private void reactivar() {
         modelo.setEstatus("A");
         database.actualizar(modelo);
     }
@@ -100,6 +100,7 @@ public class CBeneficiario implements ActionListener {
     
     private void eliminar() {
         database.eliminar(modelo);
+        vista.reiniciar();
         msj.meliminado();
     }
     
@@ -113,9 +114,11 @@ public class CBeneficiario implements ActionListener {
         if(encontrado){
             database.actualizar(modelo);
             msj.mactualizado();
+            limpiar();
         }else {
             database.insertar(modelo);
             msj.mregistrado();
+            limpiar();
            }
     }
 

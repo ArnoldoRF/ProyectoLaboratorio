@@ -225,15 +225,6 @@ public class VResponsable extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtFundacion.setText("");
     }
-    
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VResponsable().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel base;

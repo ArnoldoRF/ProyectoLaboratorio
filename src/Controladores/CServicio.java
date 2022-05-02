@@ -63,6 +63,7 @@ public class CServicio implements ActionListener {
                     if(modelo.getEstatus().contentEquals("A")) {
                         setDatos();
                         activarOpciones();
+                        vista.registroenc();
                     }
                     else {
                         int resp = msj.mpreguntar("Registro eliminado. ¿Desea restaurarlo?", "Restaurado");
@@ -76,7 +77,7 @@ public class CServicio implements ActionListener {
                 else {
                     int resp = msj.mpreguntar("Registro inexistente. ¿Desea añadirlo?", "Restaurado");
                     if(resp == 0)
-                        vista.activarBoton(vista.btnGuardar);
+                        vista.registronoenc();
                     else
                         vista.reiniciar();
                 }
@@ -88,6 +89,7 @@ public class CServicio implements ActionListener {
     
     private void limpiar() {
         vista.reiniciar();
+        vista.sinregistro();
     }
     
     private void eliminar() {
@@ -110,9 +112,11 @@ public class CServicio implements ActionListener {
         if(encontrado){
             database.actualizar(modelo);
             msj.mactualizado();
+            limpiar();
         }else{
             database.insertar(modelo);
             msj.mregistrado();
+            limpiar();
         }
     }
 

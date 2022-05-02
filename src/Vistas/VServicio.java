@@ -24,6 +24,31 @@ public class VServicio extends javax.swing.JFrame {
         reiniciar();
     }
     
+    public void sinregistro(){
+        btnGuardar.setUI(disabledText);
+        btnEliminar.setUI(disabledText);
+        txtNombre.setEditable(false);
+        txtCosto.setEditable(false);
+        btnBuscar.setEnabled(true);
+        txtCodigo.setEditable(true);
+    }
+    
+   public void registroenc(){
+        txtCodigo.setEditable(false);
+        txtNombre.setEditable(true);
+        txtCosto.setEditable(true);
+        btnBuscar.setEnabled(false);
+        btnEliminar.setEnabled(true);
+    }
+   
+   public void registronoenc(){
+        txtCodigo.setEditable(false);
+        btnBuscar.setEnabled(false);
+        txtNombre.setEditable(true);
+        txtCosto.setEditable(true);
+        btnGuardar.setEnabled(true);
+    }
+    
     
 
     @SuppressWarnings("unchecked")
@@ -225,15 +250,6 @@ public class VServicio extends javax.swing.JFrame {
         boton.setContentAreaFilled(false);
     }
     
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VServicio().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel base;
     public javax.swing.JButton btnBuscar;
