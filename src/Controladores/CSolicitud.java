@@ -10,9 +10,11 @@ import Modelos.MBeneficiario;
 import Modelos.CRUD.BeneficiarioCRUD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Modelos.MServicio;
 import Modelos.MFundacion;
 import java.util.ArrayList;
+import Modelos.MServicio;
+import java.util.Random;
+import javax.swing.table.DefaultTableModel;
 
 public class CSolicitud implements ActionListener {
     
@@ -26,9 +28,10 @@ public class CSolicitud implements ActionListener {
     private ArrayList<MServicio> servicios;
     
     public CSolicitud() {
-        vista = new VSolicitud();
+        vista = new VSolicitud(this);
         modelo = new MSolicitud();
         database = new SolicitudCRUD();
+        vista.setVisible(true);
         //cargarFundaciones();
         
         vista.btnConsultar.addActionListener(e -> consultar());
@@ -57,6 +60,26 @@ public class CSolicitud implements ActionListener {
         }
     }
     
+    public void cargarServicios() {
+        String codigo = "";
+        for(MFundacion fundacion : fundaciones) {
+            if(fundacion.getNombre().equals((String)vista.boxFundacion.getSelectedItem())) {
+                codigo = String.valueOf(fundacion.getCodigo());
+                //servicios = new ArrayList<
+                servicios = new FundacionCRUD().optenerServicios(codigo);
+                DefaultTableModel dt = (DefaultTableModel) vista.tablaServicio.getModel();
+                dt.setRowCount(0);
+                for(MServicio servicio : servicios) {
+                    Object[] fila = new Object[2];
+                    fila[0] = servicio.getNombre();
+                    fila[1] = false;
+                    dt.addRow(fila);
+                }
+                vista.boxPrioridad.setEnabled(true);
+            }
+        }
+    }
+    
     public void consultar() {
         if(!vista.txtCedula.getText().isBlank()) {
             encontrado = new BeneficiarioCRUD().consultar(vista.txtCedula.getText());
@@ -67,11 +90,13 @@ public class CSolicitud implements ActionListener {
                 else {
                     vista.boxFundacion.setEnabled(true);
                     cargarFundaciones();
+                    Random rng = new Random();
+                    vista.txtCodigo.setText(String.valueOf(rng.nextInt()));
                 }
             }
-            else {
-                System.out.printf("Error: No hay código escrito");
-            }
+        else {
+            System.out.printf("Error: No hay código escrito");
+        }
     }
     
     @Override

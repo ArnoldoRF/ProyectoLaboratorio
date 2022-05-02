@@ -1,13 +1,17 @@
 
 package Vistas;
 
+import Controladores.CMenu;
 import java.awt.event.ItemEvent;
+import Controladores.CSolicitud;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class VSolicitud extends javax.swing.JFrame {
 
-    public VSolicitud() {
+    CSolicitud soli;
+    DefaultTableModel dt = null;
+    
+    public VSolicitud(CSolicitud soli) {
         initComponents();
         txtCodigo.setEditable(false);
         boxFundacion.setEnabled(false);
@@ -16,12 +20,16 @@ public class VSolicitud extends javax.swing.JFrame {
         btnGuardar.setEnabled(false);
         txtCedula.setText("");   
         boxFundacion.addItemListener(this::cambio);
-        
+        this.soli = soli; 
+        dt = (DefaultTableModel) tablaServicio.getModel();
     }
     
     public void cambio(ItemEvent e) {
         if(e.getStateChange() == ItemEvent.SELECTED){
-            System.out.println(boxFundacion.getSelectedItem() + "Objeto");
+            tablaServicio.removeAll();
+            //DefaultTableModel temp = dt;
+            //tablaServicio.setModel(temp);
+            soli.cargarServicios();
         }
     }
 
@@ -119,6 +127,11 @@ public class VSolicitud extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnRegresar.setMinimumSize(new java.awt.Dimension(77, 24));
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         lbCodigo.setBackground(new java.awt.Color(255, 255, 255));
         lbCodigo.setText("Código");
@@ -132,19 +145,6 @@ public class VSolicitud extends javax.swing.JFrame {
         boxFundacion.setBackground(new java.awt.Color(232, 234, 246));
         boxFundacion.setFocusable(false);
         boxFundacion.setLightWeightPopupEnabled(false);
-        boxFundacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                boxFundacionMouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                boxFundacionMouseReleased(evt);
-            }
-        });
-        boxFundacion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                boxFundacionPropertyChange(evt);
-            }
-        });
 
         lbPrioridad.setBackground(new java.awt.Color(255, 255, 255));
         lbPrioridad.setText("Prioridad");
@@ -257,27 +257,11 @@ public class VSolicitud extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxFundacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxFundacionMouseClicked
-        //System.out.println(boxFundacion.getSelectedItem());
-    }//GEN-LAST:event_boxFundacionMouseClicked
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        CMenu cmenu = new CMenu();
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void boxFundacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxFundacionMouseReleased
-        //System.out.println(boxFundacion.getSelectedItem() + "sdf");
-    }//GEN-LAST:event_boxFundacionMouseReleased
-
-    private void boxFundacionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_boxFundacionPropertyChange
-        //System.out.println(boxFundacion.getSelectedItem() + "cambio");
-    }//GEN-LAST:event_boxFundacionPropertyChange
-
-    public static void main(String args[]) {
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VSolicitud().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel base;

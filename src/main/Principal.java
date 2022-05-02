@@ -1,15 +1,14 @@
 
 package main;
-import Controladores.CSolicitud;
-import Controladores.CBeneficiario;
+
+import Controladores.CMenu;
+import Controladores.CListadoBeneficiario;
 
 public class Principal {
 
     public static void main(String[] args) {
-        //CBeneficiario servicio = new CBeneficiario();
-        //servicio.getVista().setVisible(true);
-        
-        CSolicitud vi = new CSolicitud();
-        vi.getVista().setVisible(true);
+        CMenu cmenu = new CMenu();
+        //CListadoBeneficiario c = new CListadoBeneficiario();
+        //c.getVista().setVisible(true);
     }
 }
