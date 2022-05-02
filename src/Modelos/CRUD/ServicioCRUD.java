@@ -17,10 +17,10 @@ public class ServicioCRUD extends ConexionDB {
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
+            ps.setInt(1, servicio.getCodigo());
             ps.setString(2, servicio.getNombre());
             ps.setDouble(3, servicio.getCosto());
-            ps.setString(4, "A");
+            ps.setString(4, servicio.getEstatus());
             ps.execute();
         }
         catch(Exception e) {
@@ -37,12 +37,13 @@ public class ServicioCRUD extends ConexionDB {
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
+            ps.setInt(1, servicio.getCodigo());
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 servicio.setNombre(rs.getString("nomb_servicio"));
                 servicio.setCosto(Double.parseDouble(rs.getString("costo")));
+                servicio.setEstatus(rs.getString("estatus"));
                 encontrado = true;
             }
         }
@@ -54,14 +55,15 @@ public class ServicioCRUD extends ConexionDB {
     }
     
     public void actualizar(MServicio servicio) {
-        String sql = "UPDATE public.servicio SET nomb_servicio=?, costo=? "
+        String sql = "UPDATE public.servicio SET nomb_servicio=?, costo=?, estatus=? "
                 + "WHERE cod_servicio=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, servicio.getNombre());
             ps.setDouble(2, servicio.getCosto());
-            ps.setInt(3, Integer.parseInt(servicio.getCodigo()));
+            ps.setString(3, servicio.getEstatus());
+            ps.setInt(4, servicio.getCodigo());
             ps.execute();
         }
         catch(Exception e) {
@@ -72,12 +74,12 @@ public class ServicioCRUD extends ConexionDB {
     
     public void eliminar(MServicio servicio) {
         String sql = "UPDATE public.servicio SET estatus=? "
-                + "WHERE codigo=?";
+                + "WHERE cod_servicio=?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "E");
-            ps.setInt(1, Integer.parseInt(servicio.getCodigo()));
+            ps.setInt(2, servicio.getCodigo());
             ps.execute();
         }
         catch(Exception e) {
@@ -85,5 +87,4 @@ public class ServicioCRUD extends ConexionDB {
         }
         desconectar();
     }
-    
 }

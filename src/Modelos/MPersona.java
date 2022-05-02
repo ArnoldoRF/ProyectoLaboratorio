@@ -44,9 +44,8 @@ public class MPersona  {
     public String getEstatus() {
         return estatus;
     }
-
+    
     public void setEstatus(String estatus) {
         this.estatus = estatus;
     }
-
 }

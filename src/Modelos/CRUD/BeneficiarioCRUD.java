@@ -1,4 +1,3 @@
-
 package Modelos.CRUD;
 
 import Modelos.Database.ConexionDB;
@@ -42,7 +41,7 @@ public class BeneficiarioCRUD extends ConexionDB {
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                beneficiario.setCedula(rs.getString("cedula"));
+                beneficiario.setCedula(rs.getString("cedula_benef"));
                 beneficiario.setNombre(rs.getString("nombre"));
                 beneficiario.setApellido(rs.getString("apellido"));
                 beneficiario.setTelefono(rs.getString("telefono"));
@@ -67,8 +66,8 @@ public class BeneficiarioCRUD extends ConexionDB {
             ps.setString(1, beneficiario.getNombre());
             ps.setString(2, beneficiario.getApellido());
             ps.setString(3, beneficiario.getTelefono());
-            ps.setString(4, beneficiario.getEstatus());
-            ps.setString(5, beneficiario.getCedula());
+            ps.setString(4, beneficiario.getCedula());
+            ps.setString(5, beneficiario.getEstatus());
             ps.execute();
         }
         catch(Exception e) {
@@ -84,7 +83,7 @@ public class BeneficiarioCRUD extends ConexionDB {
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "E");
-            ps.setString(1, beneficiario.getCedula());
+            ps.setString(2, beneficiario.getCedula());
             ps.execute();
         }
         catch(Exception e) {
@@ -94,3 +93,4 @@ public class BeneficiarioCRUD extends ConexionDB {
     }
     
 }
+
