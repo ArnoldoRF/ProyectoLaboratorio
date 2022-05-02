@@ -4,6 +4,7 @@ package Vistas;
 public class VFundacion extends javax.swing.JFrame {
 
     public VFundacion() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 

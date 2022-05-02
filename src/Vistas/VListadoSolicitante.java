@@ -14,6 +14,7 @@ public class VListadoSolicitante extends javax.swing.JFrame {
      * Creates new form VListadoSolicitante
      */
     public VListadoSolicitante() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 

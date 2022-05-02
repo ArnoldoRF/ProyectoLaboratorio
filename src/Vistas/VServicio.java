@@ -20,6 +20,7 @@ public class VServicio extends javax.swing.JFrame {
         
         btnGuardar.setUI(disabledText);
         btnEliminar.setUI(disabledText);
+        this.setLocationRelativeTo(null);
         
         reiniciar();
     }

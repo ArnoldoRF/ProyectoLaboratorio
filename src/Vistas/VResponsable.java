@@ -2,12 +2,26 @@
 package Vistas;
 
 import Controladores.CMenu;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.plaf.metal.MetalButtonUI;
 
 public class VResponsable extends javax.swing.JFrame {
+    
+    private MetalButtonUI disabledText = 
+            new MetalButtonUI() {
+                protected Color getDisabledTextColor() {
+                    return new Color(63, 81, 181);
+                }
+            };
+    
 
     public VResponsable() {
         initComponents();
-        limpiar();
+        this.setLocationRelativeTo(null);
+        btnGuardar.setUI(disabledText);
+        btnEliminar.setUI(disabledText);
+        reiniciar();
     }
 
     @SuppressWarnings("unchecked")
@@ -224,6 +238,24 @@ public class VResponsable extends javax.swing.JFrame {
         txtApellido.setText("");
         txtTelefono.setText("");
         txtFundacion.setText("");
+    }
+    
+    public void activarBoton(JButton boton) {
+        boton.setEnabled(true);
+        boton.setContentAreaFilled(true);
+    }
+    
+    public void desactivarBoton(JButton boton) {
+        boton.setEnabled(false);
+        boton.setContentAreaFilled(false);
+    }
+   
+ 
+    public void reiniciar() {
+        limpiar();
+        
+        desactivarBoton(btnGuardar);
+        desactivarBoton(btnEliminar);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,13 +17,16 @@ public class VBeneficiario extends javax.swing.JFrame {
 
     public VBeneficiario() {
         initComponents();
-        sinregistro();
+        btnGuardar.setUI(disabledText);
+        btnEliminar.setUI(disabledText);
+        this.setLocationRelativeTo(null);
+        reiniciar();
         
     }
     
     public void sinregistro(){
-        btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(false);
+        btnGuardar.setUI(disabledText);
+        btnEliminar.setUI(disabledText);
         txtNombre.setEditable(false);
         txtApellido.setEditable(false);
         txtTelefono.setEditable(false);

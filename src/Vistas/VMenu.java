@@ -17,6 +17,7 @@ public class VMenu extends javax.swing.JFrame {
     public VMenu() {
         initComponents();
         msj = new Mensajes();
+        this.setLocationRelativeTo(null);
     }
 
     /**
