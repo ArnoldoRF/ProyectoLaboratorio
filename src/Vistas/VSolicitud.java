@@ -5,6 +5,13 @@ public class VSolicitud extends javax.swing.JFrame {
 
     public VSolicitud() {
         initComponents();
+        txtCodigo.setEditable(false);
+        //boxFundacion.setEnabled(false);
+        boxPrioridad.setEnabled(false);
+        txtResponsable.setEditable(false);
+        btnGuardar.setEnabled(false);
+        txtCedula.setText("");
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -19,8 +26,8 @@ public class VSolicitud extends javax.swing.JFrame {
         btnConsultar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        lbCodigo1 = new javax.swing.JLabel();
-        txtCodigo1 = new javax.swing.JTextField();
+        lbCodigo = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
         lbFundacion = new javax.swing.JLabel();
         boxFundacion = new javax.swing.JComboBox<>();
         lbPrioridad = new javax.swing.JLabel();
@@ -108,17 +115,16 @@ public class VSolicitud extends javax.swing.JFrame {
         btnRegresar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnRegresar.setMinimumSize(new java.awt.Dimension(77, 24));
 
-        lbCodigo1.setBackground(new java.awt.Color(255, 255, 255));
-        lbCodigo1.setText("Código");
+        lbCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        lbCodigo.setText("Código");
 
-        txtCodigo1.setBackground(new java.awt.Color(232, 234, 246));
-        txtCodigo1.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        txtCodigo.setBackground(new java.awt.Color(232, 234, 246));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
 
         lbFundacion.setBackground(new java.awt.Color(255, 255, 255));
         lbFundacion.setText("Fundación");
 
         boxFundacion.setBackground(new java.awt.Color(232, 234, 246));
-        boxFundacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "X", "Y", "Z" }));
         boxFundacion.setFocusable(false);
         boxFundacion.setLightWeightPopupEnabled(false);
 
@@ -161,9 +167,9 @@ public class VSolicitud extends javax.swing.JFrame {
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(baseLayout.createSequentialGroup()
-                            .addComponent(lbCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCodigo1))
+                            .addComponent(txtCodigo))
                         .addGroup(baseLayout.createSequentialGroup()
                             .addComponent(lbFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -190,8 +196,8 @@ public class VSolicitud extends javax.swing.JFrame {
             .addGroup(baseLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,28 +240,6 @@ public class VSolicitud extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VSolicitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VSolicitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VSolicitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VSolicitud.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -274,14 +258,14 @@ public class VSolicitud extends javax.swing.JFrame {
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lbCedula;
-    private javax.swing.JLabel lbCodigo1;
+    private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbFundacion;
     private javax.swing.JLabel lbPrioridad;
     private javax.swing.JLabel lbResponsable;
     public javax.swing.JScrollPane scrollServicio;
     public javax.swing.JTable tablaServicio;
     public javax.swing.JTextField txtCedula;
-    public javax.swing.JTextField txtCodigo1;
+    public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtResponsable;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,7 @@ public class MFundacion {
     private int codigo;
     private String nombre;
     private double presupuesto;
+    private String estatus;
     
     public MFundacion() {}
     
@@ -38,6 +39,14 @@ public class MFundacion {
 
     public void setPresupuesto(double presupuesto) {
         this.presupuesto = presupuesto;
+    }
+    
+    public String getEstatus() {
+        return estatus;
+    }
+    
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
     }
     
 }
