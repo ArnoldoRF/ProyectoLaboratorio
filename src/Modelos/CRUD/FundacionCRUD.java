@@ -124,19 +124,21 @@ public class FundacionCRUD extends ConexionDB {
     public ArrayList<MServicio> optenerServicios(String codigo) {
         System.out.println("no sirve");
         ArrayList<MServicio> servicios = new ArrayList<MServicio>();
-        String sql = "SELECT cod_servicio, nombre_serv, costo, estatu FROM public.servicio JOIN "
-                + "public.serv_fund ON cod_servicio == cod_servicio"
-                + "WHERE cod_fund = ?";
+        String sql = "SELECT * FROM public.servicio s JOIN "
+                + "public.serv_fund s_f ON s.cod_servicio = s_f.cod_servicio "
+                + "WHERE s_f.cod_fund = ?";
+        
+        //"SELECT * FROM public.servicio s JOIN public.serv_fund s_f ON s.cod_servicio = s_f.cod_servicio WHERE cod_fund = ?";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, codigo);
+            ps.setInt(1, Integer.parseInt(codigo));
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()) {
                 MServicio servicio = new MServicio();
-                servicio.setCodigo(Integer.parseInt(rs.getString("cod_servico")));
-                servicio.setNombre(rs.getString("nombre_serv"));
+                servicio.setCodigo(Integer.parseInt(rs.getString("cod_servicio")));
+                servicio.setNombre(rs.getString("nomb_servicio"));
                 servicio.setCosto(Double.parseDouble(rs.getString("costo")));
                 servicio.setEstatus(rs.getString("estatus"));
                 servicios.add(servicio);

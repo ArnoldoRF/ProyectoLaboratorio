@@ -4,10 +4,12 @@ package Vistas;
 import Controladores.CMenu;
 import java.awt.event.ItemEvent;
 import Controladores.CSolicitud;
+import javax.swing.table.DefaultTableModel;
 
 public class VSolicitud extends javax.swing.JFrame {
 
     CSolicitud soli;
+    DefaultTableModel dt = null;
     
     public VSolicitud(CSolicitud soli) {
         initComponents();
@@ -18,11 +20,15 @@ public class VSolicitud extends javax.swing.JFrame {
         btnGuardar.setEnabled(false);
         txtCedula.setText("");   
         boxFundacion.addItemListener(this::cambio);
-        this.soli = soli;    
+        this.soli = soli; 
+        dt = (DefaultTableModel) tablaServicio.getModel();
     }
     
     public void cambio(ItemEvent e) {
         if(e.getStateChange() == ItemEvent.SELECTED){
+            tablaServicio.removeAll();
+            //DefaultTableModel temp = dt;
+            //tablaServicio.setModel(temp);
             soli.cargarServicios();
         }
     }

@@ -68,18 +68,19 @@ public class CSolicitud implements ActionListener {
     public void cargarServicios() {
         String codigo = "";
         for(MFundacion fundacion : fundaciones) {
-            if(fundacion.getNombre().contains((String)vista.boxFundacion.getSelectedItem())) {
+            if(fundacion.getNombre().equals((String)vista.boxFundacion.getSelectedItem())) {
                 codigo = String.valueOf(fundacion.getCodigo());
+                //servicios = new ArrayList<
+                servicios = new FundacionCRUD().optenerServicios(codigo);
+                DefaultTableModel dt = (DefaultTableModel) vista.tablaServicio.getModel();
+                dt.setRowCount(0);
+                for(MServicio servicio : servicios) {
+                    Object[] fila = new Object[2];
+                    fila[0] = servicio.getNombre();
+                    fila[1] = false;
+                    dt.addRow(fila);
+                }
             }
-        }
-        
-        servicios = new FundacionCRUD().optenerServicios(codigo);
-        DefaultTableModel dt = (DefaultTableModel) vista.tablaServicio.getModel();
-        for(MServicio servicio : servicios) {
-            Object[] fila = new Object[2];
-            fila[0] = servicio.getNombre();
-            fila[1] = false;
-            dt.addRow(fila);
         }
     }
     
