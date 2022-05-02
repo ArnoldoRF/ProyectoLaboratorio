@@ -4,6 +4,7 @@ import Modelos.Database.ConexionDB;
 import Modelos.MBeneficiario;
 import Modelos.MFundacion;
 import Modelos.MServicio;
+import Modelos.MResponsable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -128,9 +129,7 @@ public class FundacionCRUD extends ConexionDB {
         String sql = "SELECT * FROM public.servicio s JOIN "
                 + "public.serv_fund s_f ON s.cod_servicio = s_f.cod_servicio "
                 + "WHERE s_f.cod_fund = ?";
-        
-        //"SELECT * FROM public.servicio s JOIN public.serv_fund s_f ON s.cod_servicio = s_f.cod_servicio WHERE cod_fund = ?";
-        
+                
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, Integer.parseInt(codigo));
@@ -154,13 +153,11 @@ public class FundacionCRUD extends ConexionDB {
     
     public ArrayList<MBeneficiario> optenerBeneficiario(String codigoFundacion) {
         ArrayList<MBeneficiario> beneficiarios = new ArrayList<MBeneficiario>();
-        String sql = "SELECT * FROM public.beneficiario b JOIN "
+        String sql = "SELECT * FROM public.responsable r JOIN "
                 + "public.solicitud s ON b.cedula_benef = s.cedula_benef "
                 + "JOIN public.fundacion f ON s.cod_fund = f.cod_fund "
                 + "WHERE f.cod_fund = ?";
-        
-        //"SELECT * FROM public.servicio s JOIN public.serv_fund s_f ON s.cod_servicio = s_f.cod_servicio WHERE cod_fund = ?";
-        
+                
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, Integer.parseInt(codigoFundacion));
@@ -182,6 +179,36 @@ public class FundacionCRUD extends ConexionDB {
         }
         desconectar();
         return beneficiarios;
+    }
+    
+    public ArrayList<MResponsable> optenerResponsable(String codigoFundacion) {
+        ArrayList<MResponsable> responsables = new ArrayList<MResponsable>();
+        String sql = "SELECT * FROM public.responsable b JOIN "
+                + "public.solicitud s ON b.cedula_benef = s.cedula_benef "
+                + "JOIN public.fundacion f ON s.cod_fund = f.cod_fund "
+                + "WHERE f.cod_fund = ?";
+               
+        conectar();
+        try(PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, Integer.parseInt(codigoFundacion));
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                MResponsable responsable = new MResponsable();
+                responsable.setCedula(rs.getString("cedula_benef"));
+                responsable.setNombre(rs.getString("nombre"));
+                responsable.setApellido(rs.getString("apellido"));
+                responsable.setTelefono(rs.getString("telefono"));
+                responsable.setEstatus(rs.getString("estatus"));
+                
+                responsables.add(responsable);
+            }
+        }
+        catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        desconectar();
+        return responsables;
     }
 }
 

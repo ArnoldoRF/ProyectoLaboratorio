@@ -10,15 +10,10 @@ import Modelos.MBeneficiario;
 import Modelos.CRUD.BeneficiarioCRUD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import Modelos.MFundacion;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import Modelos.Database.ConexionDB;
 import Modelos.MServicio;
+import java.util.Random;
 import javax.swing.table.DefaultTableModel;
 
 public class CSolicitud implements ActionListener {
@@ -80,6 +75,7 @@ public class CSolicitud implements ActionListener {
                     fila[1] = false;
                     dt.addRow(fila);
                 }
+                vista.boxPrioridad.setEnabled(true);
             }
         }
     }
@@ -94,6 +90,8 @@ public class CSolicitud implements ActionListener {
                 else {
                     vista.boxFundacion.setEnabled(true);
                     cargarFundaciones();
+                    Random rng = new Random();
+                    vista.txtCodigo.setText(String.valueOf(rng.nextInt()));
                 }
             }
         else {

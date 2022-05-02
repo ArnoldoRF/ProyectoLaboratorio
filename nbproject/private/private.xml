@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Vistas/VListadoSolicitante.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Modelos/CRUD/FundacionCRUD.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Controladores/CSolicitud.java</file>
             <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/main/Principal.java</file>
-            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Controladores/CListadoBeneficiario.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/ProyectoLaboratorio/src/Modelos/MFundacion.java</file>
         </group>
     </open-files>
 </project-private>
