@@ -5,17 +5,15 @@ public class MServicio {
     private int codigo;
     private String nombre;
     private double costo;
+    private String estatus;
     
-    public MServicio() {
-        codigo = 0;
-        nombre = "";
-        costo = 0;
-    }
+    public MServicio() {}
     
-    public MServicio(int codigo, String nombre, double costo) {
+    public MServicio(int codigo, String nombre, double costo, String estatus) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.costo = costo;
+        this.estatus = estatus;
     }
 
     public double getCosto() {
@@ -42,4 +40,11 @@ public class MServicio {
         this.nombre = nombre;
     }
     
+    public String getEstatus() {
+        return estatus;
+    }
+    
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
 }
