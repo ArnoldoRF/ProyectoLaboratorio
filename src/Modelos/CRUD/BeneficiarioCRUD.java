@@ -57,6 +57,25 @@ public class BeneficiarioCRUD extends ConexionDB {
         return encontrado;
     }
     
+    public boolean consultar(String cedula) {
+        boolean encontrado = false;
+        
+        String sql = "SELECT * FROM public.beneficiario "
+                + "WHERE cedula_benef=? AND estatus=?";
+        
+        conectar();
+        try(PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, cedula);
+            ps.setString(2, "A");
+            encontrado = ps.executeQuery().next();
+        }
+        catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        desconectar();
+        return encontrado;
+    }
+    
     public void actualizar(MBeneficiario beneficiario) {
         String sql = "UPDATE public.beneficiario SET nombre=?, apellido=?, telefono=?, estatus=? "
                 + "WHERE cedula_benef=?";
