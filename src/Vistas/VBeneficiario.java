@@ -17,16 +17,14 @@ public class VBeneficiario extends javax.swing.JFrame {
 
     public VBeneficiario() {
         initComponents();
-        btnGuardar.setUI(disabledText);
-        btnEliminar.setUI(disabledText);
         this.setLocationRelativeTo(null);
         reiniciar();
         
     }
     
     public void sinregistro(){
-        btnGuardar.setUI(disabledText);
-        btnEliminar.setUI(disabledText);
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
         txtNombre.setEditable(false);
         txtApellido.setEditable(false);
         txtTelefono.setEditable(false);
@@ -39,16 +37,18 @@ public class VBeneficiario extends javax.swing.JFrame {
         txtNombre.setEditable(true);
         txtApellido.setEditable(true);
         txtTelefono.setEditable(true);
+        btnBuscar.setEnabled(false);
+        btnEliminar.setEnabled(true);
     }
    
    public void registronoenc(){
+        btnEliminar.setEnabled(false);
         txtCedula.setEditable(false);
         btnBuscar.setEnabled(false);
         txtNombre.setEditable(true);
         txtApellido.setEditable(true);
         txtTelefono.setEditable(true);
         btnGuardar.setEnabled(true);
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -252,9 +252,7 @@ public class VBeneficiario extends javax.swing.JFrame {
     
     public void reiniciar() {
         limpiar();
-        
-        desactivarBoton(btnGuardar);
-        desactivarBoton(btnEliminar);
+        sinregistro();
     }
     
     public void activarBoton(JButton boton) {

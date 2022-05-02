@@ -40,6 +40,18 @@ public class CResponsable implements ActionListener {
         return database;
     }
     
+    private void setDatos() {
+        vista.txtNombre.setText(modelo.getNombre());
+        vista.txtApellido.setText(modelo.getApellido());
+        vista.txtTelefono.setText(modelo.getTelefono());
+        
+    }
+    
+    private void activarOpciones() {
+        vista.activarBoton(vista.btnGuardar);
+        vista.activarBoton(vista.btnEliminar);
+    }
+    
     private void buscar() {
         if(vista.txtCedula.getText() != "") {
                 modelo = new MResponsable();

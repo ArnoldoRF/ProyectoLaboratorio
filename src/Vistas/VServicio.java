@@ -17,17 +17,13 @@ public class VServicio extends javax.swing.JFrame {
     
     public VServicio() {
         initComponents();
-        
-        btnGuardar.setUI(disabledText);
-        btnEliminar.setUI(disabledText);
         this.setLocationRelativeTo(null);
-        
         reiniciar();
     }
     
     public void sinregistro(){
-        btnGuardar.setUI(disabledText);
-        btnEliminar.setUI(disabledText);
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
         txtNombre.setEditable(false);
         txtCosto.setEditable(false);
         btnBuscar.setEnabled(true);
@@ -48,6 +44,8 @@ public class VServicio extends javax.swing.JFrame {
         txtNombre.setEditable(true);
         txtCosto.setEditable(true);
         btnGuardar.setEnabled(true);
+        btnEliminar.setEnabled(false);
+        
     }
     
     
@@ -236,9 +234,7 @@ public class VServicio extends javax.swing.JFrame {
     
     public void reiniciar() {
         limpiar();
-        
-        desactivarBoton(btnGuardar);
-        desactivarBoton(btnEliminar);
+        sinregistro();
     }
     
     public void activarBoton(JButton boton) {

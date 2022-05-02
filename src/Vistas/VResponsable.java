@@ -19,9 +19,41 @@ public class VResponsable extends javax.swing.JFrame {
     public VResponsable() {
         initComponents();
         this.setLocationRelativeTo(null);
-        btnGuardar.setUI(disabledText);
-        btnEliminar.setUI(disabledText);
         reiniciar();
+    }
+   
+    
+    public void sinregistro(){
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        txtNombre.setEditable(false);
+        txtApellido.setEditable(false);
+        txtTelefono.setEditable(false);
+        txtFundacion.setEditable(false);
+        txtCedula.setEditable(true);
+        btnBuscar.setEnabled(true);
+    }
+    
+   public void registroenc(){
+        txtCedula.setEditable(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+        txtFundacion.setEditable(true);
+        btnBuscar.setEnabled(false);
+        btnEliminar.setEnabled(true);
+    }
+   
+   public void registronoenc(){
+        btnEliminar.setEnabled(false);
+        txtCedula.setEditable(false);
+        btnBuscar.setEnabled(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+        btnGuardar.setEnabled(true);
+        txtFundacion.setEditable(true);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -253,9 +285,7 @@ public class VResponsable extends javax.swing.JFrame {
  
     public void reiniciar() {
         limpiar();
-        
-        desactivarBoton(btnGuardar);
-        desactivarBoton(btnEliminar);
+        sinregistro();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
