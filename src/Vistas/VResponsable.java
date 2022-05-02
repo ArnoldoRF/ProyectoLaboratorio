@@ -1,8 +1,6 @@
 
 package Vistas;
 
-import Controladores.CMenu;
-
 public class VResponsable extends javax.swing.JFrame {
 
     public VResponsable() {
@@ -106,11 +104,6 @@ public class VResponsable extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnRegresar.setMinimumSize(new java.awt.Dimension(77, 24));
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
-            }
-        });
 
         txtTelefono.setBackground(new java.awt.Color(232, 234, 246));
         txtTelefono.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
@@ -212,11 +205,6 @@ public class VResponsable extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        CMenu cmenu = new CMenu();
-        this.dispose();
-    }//GEN-LAST:event_btnRegresarActionPerformed
 
     public void limpiar() {
         txtCedula.setText("");

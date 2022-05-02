@@ -1,7 +1,6 @@
 
 package Vistas;
 
-import Controladores.CMenu;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.plaf.metal.MetalButtonUI;
@@ -116,11 +115,6 @@ public class VServicio extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnRegresar.setMinimumSize(new java.awt.Dimension(77, 24));
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
@@ -194,11 +188,6 @@ public class VServicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-       CMenu cmenu = new CMenu();
-       this.dispose();
-    }//GEN-LAST:event_btnRegresarActionPerformed
 
     public void limpiar() {
         txtCodigo.setText("");

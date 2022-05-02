@@ -19,7 +19,6 @@ public class CResponsable implements ActionListener {
         vista = new VResponsable();
         modelo = new MResponsable();
         database = new ResponsableCRUD();
-        vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
         vista.btnGuardar.addActionListener(e -> guardar());
@@ -87,6 +86,6 @@ public class CResponsable implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
