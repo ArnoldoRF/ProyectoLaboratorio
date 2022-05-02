@@ -2,18 +2,26 @@
 package Vistas;
 
 import Controladores.CMenu;
+import java.awt.event.ItemEvent;
 
 public class VSolicitud extends javax.swing.JFrame {
 
     public VSolicitud() {
         initComponents();
         txtCodigo.setEditable(false);
-        //boxFundacion.setEnabled(false);
+        boxFundacion.setEnabled(false);
         boxPrioridad.setEnabled(false);
         txtResponsable.setEditable(false);
         btnGuardar.setEnabled(false);
-        txtCedula.setText("");
+        txtCedula.setText("");   
+        boxFundacion.addItemListener(this::cambio);
         
+    }
+    
+    public void cambio(ItemEvent e) {
+        if(e.getStateChange() == ItemEvent.SELECTED){
+            System.out.println(boxFundacion.getSelectedItem() + "Objeto");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -132,6 +140,7 @@ public class VSolicitud extends javax.swing.JFrame {
         lbFundacion.setText("Fundación");
 
         boxFundacion.setBackground(new java.awt.Color(232, 234, 246));
+        boxFundacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         boxFundacion.setFocusable(false);
         boxFundacion.setLightWeightPopupEnabled(false);
 

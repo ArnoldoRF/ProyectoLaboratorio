@@ -34,7 +34,7 @@ public class CSolicitud implements ActionListener {
         modelo = new MSolicitud();
         database = new SolicitudCRUD();
         vista.setVisible(true);
-        cargarFundaciones();
+        //cargarFundaciones();
         
         vista.btnConsultar.addActionListener(e -> consultar());
         //vista.btnGuardar.addActionListener(e -> guardar());
@@ -55,22 +55,28 @@ public class CSolicitud implements ActionListener {
     }
     
     public void cargarFundaciones() {
-            fundaciones = new FundacionCRUD().optenerFundaciones();
-            for(MFundacion fundacion : fundaciones) {
-                vista.boxFundacion.addItem(fundacion.getNombre());
-            }
+        fundaciones = new FundacionCRUD().optenerFundaciones();
+        vista.boxFundacion.addItem("");
+        for(MFundacion fundacion : fundaciones) {
+            vista.boxFundacion.addItem(fundacion.getNombre());
+        }
     }
     
     public void consultar() {
         if(!vista.txtCedula.getText().isBlank()) {
-                if(!(new BeneficiarioCRUD().consultar(vista.txtCedula.getText()))) {
+            encontrado = new BeneficiarioCRUD().consultar(vista.txtCedula.getText());
+                if(!encontrado) {
                     Mensajes msj = new Mensajes();
                     msj.mnencontrado();
                 }
+                else {
+                    vista.boxFundacion.setEnabled(true);
+                    cargarFundaciones();
+                }
             }
-            else {
-                System.out.printf("Error: No hay código escrito");
-            }
+        else {
+            System.out.printf("Error: No hay código escrito");
+        }
     }
     
     @Override
