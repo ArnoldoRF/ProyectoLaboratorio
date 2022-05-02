@@ -13,6 +13,7 @@ public class CServicio implements ActionListener {
     private VServicio vista;
     private MServicio modelo;
     private ServicioCRUD database;
+    private Mensajes msj;
     
     private boolean encontrado;
         
@@ -20,6 +21,7 @@ public class CServicio implements ActionListener {
         vista = new VServicio();
         modelo = new MServicio();
         database = new ServicioCRUD();
+        msj = new Mensajes();
         vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
@@ -52,8 +54,6 @@ public class CServicio implements ActionListener {
     }
     
     private void buscar() {
-        Mensajes msj = new Mensajes();
-        
         if(!vista.txtCodigo.getText().isBlank()) {
                 modelo = new MServicio();
                 modelo.setCodigo(Integer.parseInt(vista.txtCodigo.getText()));
@@ -93,6 +93,7 @@ public class CServicio implements ActionListener {
     private void eliminar() {
         database.eliminar(modelo);
         vista.reiniciar();
+        msj.meliminado();
     }
     
     private void reactivar() {
@@ -106,10 +107,13 @@ public class CServicio implements ActionListener {
         modelo.setCosto(Double.parseDouble(vista.txtCosto.getText()));
         modelo.setEstatus("A");
         
-        if(encontrado)
+        if(encontrado){
             database.actualizar(modelo);
-        else
+            msj.mactualizado();
+        }else{
             database.insertar(modelo);
+            msj.mregistrado();
+        }
     }
 
     @Override

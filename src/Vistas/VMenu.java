@@ -4,7 +4,10 @@
  */
 package Vistas;
 
+import Controladores.CBeneficiario;
+import Controladores.CResponsable;
 import Controladores.CServicio;
+import Controladores.CSolicitud;
 
 /**
  *
@@ -108,6 +111,11 @@ public class VMenu extends javax.swing.JFrame {
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/curriculum.png"))); // NOI18N
         jMenuItem1.setText("Solicitud");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         btnarchivo.add(jMenuItem1);
 
         jMenuBar1.add(btnarchivo);
@@ -153,7 +161,8 @@ public class VMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBeneficiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeneficiarioActionPerformed
-        // TODO add your handling code here:
+        CBeneficiario cbene = new CBeneficiario();
+        this.dispose();
     }//GEN-LAST:event_btnBeneficiarioActionPerformed
 
     private void btnarchivoMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_btnarchivoMenuKeyPressed
@@ -169,7 +178,8 @@ public class VMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void btnResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResponsableActionPerformed
-        // TODO add your handling code here:
+        CResponsable cresp = new CResponsable();
+        this.dispose();
     }//GEN-LAST:event_btnResponsableActionPerformed
 
     private void btnAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendaActionPerformed
@@ -180,6 +190,11 @@ public class VMenu extends javax.swing.JFrame {
         CServicio cserv = new CServicio();
         this.dispose();
     }//GEN-LAST:event_btnServiciosActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        CSolicitud csol = new CSolicitud();
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

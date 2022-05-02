@@ -1,11 +1,51 @@
 
 package Vistas;
 
+import Controladores.CMenu;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.plaf.metal.MetalButtonUI;
+
 public class VBeneficiario extends javax.swing.JFrame {
+    
+     private MetalButtonUI disabledText = 
+            new MetalButtonUI() {
+                protected Color getDisabledTextColor() {
+                    return new Color(63, 81, 181);
+                }
+            };
 
     public VBeneficiario() {
         initComponents();
-        limpiar();
+        sinregistro();
+        
+    }
+    
+    public void sinregistro(){
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        txtNombre.setEditable(false);
+        txtApellido.setEditable(false);
+        txtTelefono.setEditable(false);
+        txtCedula.setEditable(true);
+        btnBuscar.setEnabled(true);
+    }
+    
+   public void registroenc(){
+        txtCedula.setEditable(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+    }
+   
+   public void registronoenc(){
+        txtCedula.setEditable(false);
+        btnBuscar.setEnabled(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+        btnGuardar.setEnabled(true);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -102,6 +142,11 @@ public class VBeneficiario extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnRegresar.setMinimumSize(new java.awt.Dimension(77, 24));
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         txtTelefono.setBackground(new java.awt.Color(232, 234, 246));
         txtTelefono.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
@@ -190,6 +235,11 @@ public class VBeneficiario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+       CMenu cmenu = new CMenu();
+       this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     public void limpiar() {
         txtCedula.setText("");
         txtNombre.setText("");
@@ -197,14 +247,23 @@ public class VBeneficiario extends javax.swing.JFrame {
         txtTelefono.setText("");
     }
     
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VBeneficiario().setVisible(true);
-            }
-        });
+    public void reiniciar() {
+        limpiar();
+        
+        desactivarBoton(btnGuardar);
+        desactivarBoton(btnEliminar);
     }
+    
+    public void activarBoton(JButton boton) {
+        boton.setEnabled(true);
+        boton.setContentAreaFilled(true);
+    }
+    
+    public void desactivarBoton(JButton boton) {
+        boton.setEnabled(false);
+        boton.setContentAreaFilled(false);
+    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel base;

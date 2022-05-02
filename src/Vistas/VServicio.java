@@ -23,6 +23,8 @@ public class VServicio extends javax.swing.JFrame {
         
         reiniciar();
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
