@@ -19,6 +19,7 @@ public class CBeneficiario implements ActionListener {
         vista = new VBeneficiario();
         modelo = new MBeneficiario();
         database = new BeneficiarioCRUD();
+        vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
         vista.btnGuardar.addActionListener(e -> guardar());
@@ -84,6 +85,6 @@ public class CBeneficiario implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 }

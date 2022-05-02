@@ -33,6 +33,7 @@ public class CSolicitud implements ActionListener {
         vista = new VSolicitud();
         modelo = new MSolicitud();
         database = new SolicitudCRUD();
+        vista.setVisible(true);
         cargarFundaciones();
         
         vista.btnConsultar.addActionListener(e -> consultar());
