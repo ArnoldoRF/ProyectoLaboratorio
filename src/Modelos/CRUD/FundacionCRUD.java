@@ -2,6 +2,7 @@ package Modelos.CRUD;
 
 import Modelos.Database.ConexionDB;
 import Modelos.MFundacion;
+import Modelos.MServicio;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -118,6 +119,34 @@ public class FundacionCRUD extends ConexionDB {
         }
         desconectar();
         return fundaciones;
+    }
+    
+    public ArrayList<MServicio> optenerServicios(String codigo) {
+        System.out.println("no sirve");
+        ArrayList<MServicio> servicios = new ArrayList<MServicio>();
+        String sql = "SELECT cod_servicio, nombre_serv, costo, estatu FROM public.servicio JOIN "
+                + "public.serv_fund ON cod_servicio == cod_servicio"
+                + "WHERE cod_fund = ?";
+        
+        conectar();
+        try(PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, codigo);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                MServicio servicio = new MServicio();
+                servicio.setCodigo(Integer.parseInt(rs.getString("cod_servico")));
+                servicio.setNombre(rs.getString("nombre_serv"));
+                servicio.setCosto(Double.parseDouble(rs.getString("costo")));
+                servicio.setEstatus(rs.getString("estatus"));
+                servicios.add(servicio);
+            }
+        }
+        catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        desconectar();
+        return servicios;
     }
 }
 

@@ -18,6 +18,8 @@ import Modelos.MFundacion;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import Modelos.Database.ConexionDB;
+import Modelos.MServicio;
+import javax.swing.table.DefaultTableModel;
 
 public class CSolicitud implements ActionListener {
     
@@ -28,9 +30,10 @@ public class CSolicitud implements ActionListener {
     private boolean encontrado;
     
     private ArrayList<MFundacion> fundaciones;
+    private ArrayList<MServicio> servicios;
     
     public CSolicitud() {
-        vista = new VSolicitud();
+        vista = new VSolicitud(this);
         modelo = new MSolicitud();
         database = new SolicitudCRUD();
         vista.setVisible(true);
@@ -59,6 +62,24 @@ public class CSolicitud implements ActionListener {
         vista.boxFundacion.addItem("");
         for(MFundacion fundacion : fundaciones) {
             vista.boxFundacion.addItem(fundacion.getNombre());
+        }
+    }
+    
+    public void cargarServicios() {
+        String codigo = "";
+        for(MFundacion fundacion : fundaciones) {
+            if(fundacion.getNombre().contains((String)vista.boxFundacion.getSelectedItem())) {
+                codigo = String.valueOf(fundacion.getCodigo());
+            }
+        }
+        
+        servicios = new FundacionCRUD().optenerServicios(codigo);
+        DefaultTableModel dt = (DefaultTableModel) vista.tablaServicio.getModel();
+        for(MServicio servicio : servicios) {
+            Object[] fila = new Object[2];
+            fila[0] = servicio.getNombre();
+            fila[1] = false;
+            dt.addRow(fila);
         }
     }
     
