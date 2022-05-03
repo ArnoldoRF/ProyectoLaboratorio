@@ -48,13 +48,7 @@ public class VSolicitud extends javax.swing.JFrame {
 
         tablaServicio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Consulta", null},
-                {"Psicologo", null},
-                {"The", null},
-                {"Rata", null},
-                {"Alada", null},
-                {"Nada", null},
-                {"Nada", null}
+
             },
             new String [] {
                 "SERVICIO", ""
@@ -157,7 +151,7 @@ public class VSolicitud extends javax.swing.JFrame {
         boxFundacion.setFocusable(false);
         boxFundacion.setLightWeightPopupEnabled(false);
         base.add(boxFundacion);
-        boxFundacion.setBounds(112, 79, 254, 22);
+        boxFundacion.setBounds(112, 79, 254, 24);
 
         lbPrioridad.setBackground(new java.awt.Color(255, 255, 255));
         lbPrioridad.setText("Prioridad");
