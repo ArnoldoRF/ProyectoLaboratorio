@@ -12,7 +12,7 @@ public class ResponsableCRUD extends ConexionDB{
     public void insertar(MResponsable resp) {
         String sql = "INSERT INTO public.responsable "
                 + "(cedula_res, nombre, apellido, cod_fund, telefono, estatus) "
-                + "VALUES (?, ?, ?, ?, ?, ?, )";
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
@@ -85,7 +85,7 @@ public class ResponsableCRUD extends ConexionDB{
         conectar();
         try(PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, "E");
-            ps.setString(1, resp.getCedula());
+            ps.setString(2, resp.getCedula());
             ps.execute();
         }
         catch(Exception e) {

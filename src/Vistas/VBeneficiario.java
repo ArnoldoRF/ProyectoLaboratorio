@@ -2,12 +2,53 @@
 package Vistas;
 
 import Controladores.CMenu;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.plaf.metal.MetalButtonUI;
 
 public class VBeneficiario extends javax.swing.JFrame {
+    
+     private MetalButtonUI disabledText = 
+            new MetalButtonUI() {
+                protected Color getDisabledTextColor() {
+                    return new Color(63, 81, 181);
+                }
+            };
 
     public VBeneficiario() {
         initComponents();
-        limpiar();
+        this.setLocationRelativeTo(null);
+        reiniciar();
+        
+    }
+    
+    public void sinregistro(){
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        txtNombre.setEditable(false);
+        txtApellido.setEditable(false);
+        txtTelefono.setEditable(false);
+        txtCedula.setEditable(true);
+        btnBuscar.setEnabled(true);
+    }
+    
+   public void registroenc(){
+        txtCedula.setEditable(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+        btnBuscar.setEnabled(false);
+        btnEliminar.setEnabled(true);
+    }
+   
+   public void registronoenc(){
+        btnEliminar.setEnabled(false);
+        txtCedula.setEditable(false);
+        btnBuscar.setEnabled(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+        btnGuardar.setEnabled(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -207,6 +248,21 @@ public class VBeneficiario extends javax.swing.JFrame {
         txtNombre.setText("");
         txtApellido.setText("");
         txtTelefono.setText("");
+    }
+    
+    public void reiniciar() {
+        limpiar();
+        sinregistro();
+    }
+    
+    public void activarBoton(JButton boton) {
+        boton.setEnabled(true);
+        boton.setContentAreaFilled(true);
+    }
+    
+    public void desactivarBoton(JButton boton) {
+        boton.setEnabled(false);
+        boton.setContentAreaFilled(false);
     }
    
 

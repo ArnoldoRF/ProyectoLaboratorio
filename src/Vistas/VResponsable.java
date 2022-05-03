@@ -2,12 +2,58 @@
 package Vistas;
 
 import Controladores.CMenu;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.plaf.metal.MetalButtonUI;
 
 public class VResponsable extends javax.swing.JFrame {
+    
+    private MetalButtonUI disabledText = 
+            new MetalButtonUI() {
+                protected Color getDisabledTextColor() {
+                    return new Color(63, 81, 181);
+                }
+            };
+    
 
     public VResponsable() {
         initComponents();
-        limpiar();
+        this.setLocationRelativeTo(null);
+        reiniciar();
+    }
+   
+    
+    public void sinregistro(){
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        txtNombre.setEditable(false);
+        txtApellido.setEditable(false);
+        txtTelefono.setEditable(false);
+        txtFundacion.setEditable(false);
+        txtCedula.setEditable(true);
+        btnBuscar.setEnabled(true);
+    }
+    
+   public void registroenc(){
+        txtCedula.setEditable(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+        txtFundacion.setEditable(true);
+        btnBuscar.setEnabled(false);
+        btnEliminar.setEnabled(true);
+    }
+   
+   public void registronoenc(){
+        btnEliminar.setEnabled(false);
+        txtCedula.setEditable(false);
+        btnBuscar.setEnabled(false);
+        txtNombre.setEditable(true);
+        txtApellido.setEditable(true);
+        txtTelefono.setEditable(true);
+        btnGuardar.setEnabled(true);
+        txtFundacion.setEditable(true);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -226,13 +272,20 @@ public class VResponsable extends javax.swing.JFrame {
         txtFundacion.setText("");
     }
     
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VResponsable().setVisible(true);
-            }
-        });
+    public void activarBoton(JButton boton) {
+        boton.setEnabled(true);
+        boton.setContentAreaFilled(true);
+    }
+    
+    public void desactivarBoton(JButton boton) {
+        boton.setEnabled(false);
+        boton.setContentAreaFilled(false);
+    }
+   
+ 
+    public void reiniciar() {
+        limpiar();
+        sinregistro();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

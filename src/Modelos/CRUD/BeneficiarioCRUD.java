@@ -85,8 +85,8 @@ public class BeneficiarioCRUD extends ConexionDB {
             ps.setString(1, beneficiario.getNombre());
             ps.setString(2, beneficiario.getApellido());
             ps.setString(3, beneficiario.getTelefono());
-            ps.setString(4, beneficiario.getCedula());
-            ps.setString(5, beneficiario.getEstatus());
+            ps.setString(4, beneficiario.getEstatus());
+            ps.setString(5, beneficiario.getCedula());
             ps.execute();
         }
         catch(Exception e) {

@@ -2,35 +2,19 @@
 package Vistas;
 
 import Controladores.CMenu;
-import java.awt.event.ItemEvent;
-import Controladores.CSolicitud;
-import javax.swing.table.DefaultTableModel;
 
 public class VSolicitud extends javax.swing.JFrame {
 
-    CSolicitud soli;
-    DefaultTableModel dt = null;
-    
-    public VSolicitud(CSolicitud soli) {
+    public VSolicitud() {
         initComponents();
         txtCodigo.setEditable(false);
-        boxFundacion.setEnabled(false);
+        //boxFundacion.setEnabled(false);
         boxPrioridad.setEnabled(false);
         txtResponsable.setEditable(false);
         btnGuardar.setEnabled(false);
-        txtCedula.setText("");   
-        boxFundacion.addItemListener(this::cambio);
-        this.soli = soli; 
-        dt = (DefaultTableModel) tablaServicio.getModel();
-    }
-    
-    public void cambio(ItemEvent e) {
-        if(e.getStateChange() == ItemEvent.SELECTED){
-            tablaServicio.removeAll();
-            //DefaultTableModel temp = dt;
-            //tablaServicio.setModel(temp);
-            soli.cargarServicios();
-        }
+        txtCedula.setText("");
+        this.setLocationRelativeTo(null);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -59,10 +43,18 @@ public class VSolicitud extends javax.swing.JFrame {
 
         base.setBackground(new java.awt.Color(255, 255, 255));
         base.setMinimumSize(new java.awt.Dimension(400, 300));
+        base.setPreferredSize(new java.awt.Dimension(800, 383));
+        base.setLayout(null);
 
         tablaServicio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"Consulta", null},
+                {"Psicologo", null},
+                {"The", null},
+                {"Rata", null},
+                {"Alada", null},
+                {"Nada", null},
+                {"Nada", null}
             },
             new String [] {
                 "SERVICIO", ""
@@ -92,11 +84,18 @@ public class VSolicitud extends javax.swing.JFrame {
             tablaServicio.getColumnModel().getColumn(1).setMaxWidth(30);
         }
 
+        base.add(scrollServicio);
+        scrollServicio.setBounds(36, 114, 330, 149);
+
         lbCedula.setBackground(new java.awt.Color(255, 255, 255));
         lbCedula.setText("Cedula");
+        base.add(lbCedula);
+        lbCedula.setBounds(36, 42, 70, 24);
 
         txtCedula.setBackground(new java.awt.Color(232, 234, 246));
         txtCedula.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        base.add(txtCedula);
+        txtCedula.setBounds(112, 42, 168, 24);
 
         btnConsultar.setBackground(new java.awt.Color(63, 81, 181));
         btnConsultar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -107,6 +106,8 @@ public class VSolicitud extends javax.swing.JFrame {
         btnConsultar.setFocusPainted(false);
         btnConsultar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnConsultar.setMinimumSize(new java.awt.Dimension(77, 24));
+        base.add(btnConsultar);
+        btnConsultar.setBounds(286, 42, 80, 24);
 
         btnCancelar.setBackground(new java.awt.Color(63, 81, 181));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -117,6 +118,8 @@ public class VSolicitud extends javax.swing.JFrame {
         btnCancelar.setFocusPainted(false);
         btnCancelar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnCancelar.setMinimumSize(new java.awt.Dimension(77, 24));
+        base.add(btnCancelar);
+        btnCancelar.setBounds(200, 353, 80, 24);
 
         btnRegresar.setBackground(new java.awt.Color(63, 81, 181));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -132,33 +135,51 @@ public class VSolicitud extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
+        base.add(btnRegresar);
+        btnRegresar.setBounds(286, 353, 80, 24);
 
         lbCodigo.setBackground(new java.awt.Color(255, 255, 255));
         lbCodigo.setText("Código");
+        base.add(lbCodigo);
+        lbCodigo.setBounds(36, 6, 70, 24);
 
         txtCodigo.setBackground(new java.awt.Color(232, 234, 246));
         txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        base.add(txtCodigo);
+        txtCodigo.setBounds(112, 6, 254, 24);
 
         lbFundacion.setBackground(new java.awt.Color(255, 255, 255));
         lbFundacion.setText("Fundación");
+        base.add(lbFundacion);
+        lbFundacion.setBounds(36, 78, 70, 24);
 
         boxFundacion.setBackground(new java.awt.Color(232, 234, 246));
         boxFundacion.setFocusable(false);
         boxFundacion.setLightWeightPopupEnabled(false);
+        base.add(boxFundacion);
+        boxFundacion.setBounds(112, 79, 254, 22);
 
         lbPrioridad.setBackground(new java.awt.Color(255, 255, 255));
         lbPrioridad.setText("Prioridad");
+        base.add(lbPrioridad);
+        lbPrioridad.setBounds(36, 275, 70, 24);
 
         boxPrioridad.setBackground(new java.awt.Color(232, 234, 246));
         boxPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Media", "Baja" }));
         boxPrioridad.setFocusable(false);
         boxPrioridad.setLightWeightPopupEnabled(false);
+        base.add(boxPrioridad);
+        boxPrioridad.setBounds(112, 276, 254, 22);
 
         txtResponsable.setBackground(new java.awt.Color(232, 234, 246));
         txtResponsable.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        base.add(txtResponsable);
+        txtResponsable.setBounds(112, 311, 254, 24);
 
         lbResponsable.setBackground(new java.awt.Color(255, 255, 255));
         lbResponsable.setText("Responsable");
+        base.add(lbResponsable);
+        lbResponsable.setBounds(36, 311, 70, 24);
 
         btnGuardar.setBackground(new java.awt.Color(63, 81, 181));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -169,89 +190,18 @@ public class VSolicitud extends javax.swing.JFrame {
         btnGuardar.setFocusPainted(false);
         btnGuardar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnGuardar.setMinimumSize(new java.awt.Dimension(77, 24));
-
-        javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
-        base.setLayout(baseLayout);
-        baseLayout.setHorizontalGroup(
-            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(baseLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(baseLayout.createSequentialGroup()
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(baseLayout.createSequentialGroup()
-                            .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCodigo))
-                        .addGroup(baseLayout.createSequentialGroup()
-                            .addComponent(lbFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boxFundacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(baseLayout.createSequentialGroup()
-                            .addComponent(lbCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(scrollServicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(baseLayout.createSequentialGroup()
-                            .addComponent(lbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boxPrioridad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(baseLayout.createSequentialGroup()
-                            .addComponent(lbResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtResponsable))))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        baseLayout.setVerticalGroup(
-            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(baseLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        base.add(btnGuardar);
+        btnGuardar.setBounds(114, 353, 80, 24);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(base, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(base, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

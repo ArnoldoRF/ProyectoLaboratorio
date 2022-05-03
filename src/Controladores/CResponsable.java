@@ -13,6 +13,7 @@ public class CResponsable implements ActionListener {
     private VResponsable vista;
     private MResponsable modelo;
     private ResponsableCRUD database;
+    private Mensajes msj;
     private boolean encontrado;
         
     public CResponsable() {
@@ -20,6 +21,7 @@ public class CResponsable implements ActionListener {
         modelo = new MResponsable();
         database = new ResponsableCRUD();
         vista.setVisible(true);
+        msj = new Mensajes();
         
         vista.btnBuscar.addActionListener(e -> buscar());
         vista.btnGuardar.addActionListener(e -> guardar());
@@ -40,6 +42,18 @@ public class CResponsable implements ActionListener {
         return database;
     }
     
+    private void setDatos() {
+        vista.txtNombre.setText(modelo.getNombre());
+        vista.txtApellido.setText(modelo.getApellido());
+        vista.txtTelefono.setText(modelo.getTelefono());
+        vista.txtFundacion.setText(String.valueOf(modelo.getCodigoFundacion()));
+    }
+    
+    private void activarOpciones() {
+        vista.activarBoton(vista.btnGuardar);
+        vista.activarBoton(vista.btnEliminar);
+    }
+    
     private void buscar() {
         if(vista.txtCedula.getText() != "") {
                 modelo = new MResponsable();
@@ -47,15 +61,26 @@ public class CResponsable implements ActionListener {
                 encontrado = database.consultar(modelo);
                 
                 if(encontrado) {
-                    vista.txtNombre.setText(modelo.getNombre());
-                    vista.txtApellido.setText(modelo.getApellido());
-                    vista.txtTelefono.setText(modelo.getTelefono());
-                    vista.txtFundacion.setText(String.valueOf(modelo.getCodigoFundacion()));
+                    if (modelo.getEstatus().contentEquals("A")) {
+                        setDatos();
+                        activarOpciones();
+                        vista.registroenc();
+                    }
+                    else {
+                        int resp = msj.mpreguntar("Registro eliminado. ¿Desea restaurarlo?", "Restaurado");
+                        if(resp == 0) {
+                            reactivar();
+                            setDatos();
+                            activarOpciones();
+                        }
+                    }
                 }
                 else {
-                    Mensajes msj = new Mensajes();
-                    msj.mnencontrado();
-                    vista.limpiar();
+                    int resp = msj.mpreguntar("Registro inexistente. ¿Desea añadirlo?", "Restaurado");
+                    if(resp == 0)
+                        vista.registronoenc();
+                    else
+                        vista.reiniciar();
                 }
             }
             else {
@@ -63,12 +88,20 @@ public class CResponsable implements ActionListener {
             }
     }
     
+    private void reactivar() {
+        modelo.setEstatus("A");
+        database.actualizar(modelo);
+    }
+    
     private void limpiar() {
         vista.limpiar();
+        vista.sinregistro();
     }
     
     private void eliminar() {
         database.eliminar(modelo);
+        vista.reiniciar();
+        msj.meliminado();
     }
     
     private void guardar() {
@@ -79,10 +112,16 @@ public class CResponsable implements ActionListener {
         modelo.setCodigoFundacion(Integer.parseInt(vista.txtFundacion.getText()));
         modelo.setEstatus("A");
         
-        if(encontrado)
+        if(encontrado) {
             database.actualizar(modelo);
-        else 
+            msj.mactualizado();
+            limpiar();
+        }
+        else {
             database.insertar(modelo);
+            msj.mregistrado();
+            limpiar();
+        }
     }
 
     @Override
