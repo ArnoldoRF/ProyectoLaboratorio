@@ -18,15 +18,21 @@ public class VServicio extends javax.swing.JFrame {
     public VServicio() {
         initComponents();
         this.setLocationRelativeTo(null);
+        btnBuscar.setUI(disabledText);
+        btnCancelar.setUI(disabledText);
+        btnEliminar.setUI(disabledText);
+        btnGuardar.setUI(disabledText);
+        btnRegresar.setUI(disabledText);
         reiniciar();
     }
     
     public void sinregistro(){
-        btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(false);
+        desactivarBoton(btnGuardar);
+        desactivarBoton(btnEliminar);
+        activarBoton(btnBuscar);
+        
         txtNombre.setEditable(false);
         txtCosto.setEditable(false);
-        btnBuscar.setEnabled(true);
         txtCodigo.setEditable(true);
     }
     
@@ -34,17 +40,19 @@ public class VServicio extends javax.swing.JFrame {
         txtCodigo.setEditable(false);
         txtNombre.setEditable(true);
         txtCosto.setEditable(true);
-        btnBuscar.setEnabled(false);
-        btnEliminar.setEnabled(true);
+        
+        desactivarBoton(btnBuscar);
+        activarBoton(btnEliminar);
     }
    
    public void registronoenc(){
         txtCodigo.setEditable(false);
-        btnBuscar.setEnabled(false);
         txtNombre.setEditable(true);
         txtCosto.setEditable(true);
-        btnGuardar.setEnabled(true);
-        btnEliminar.setEnabled(false);
+        
+        desactivarBoton(btnBuscar);
+        activarBoton(btnGuardar);
+        desactivarBoton(btnEliminar);
         
     }
     

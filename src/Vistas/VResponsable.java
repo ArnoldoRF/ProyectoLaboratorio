@@ -19,19 +19,25 @@ public class VResponsable extends javax.swing.JFrame {
     public VResponsable() {
         initComponents();
         this.setLocationRelativeTo(null);
+        btnBuscar.setUI(disabledText);
+        btnCancelar.setUI(disabledText);
+        btnEliminar.setUI(disabledText);
+        btnGuardar.setUI(disabledText);
+        btnRegresar.setUI(disabledText);
         reiniciar();
     }
    
     
     public void sinregistro(){
-        btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(false);
         txtNombre.setEditable(false);
         txtApellido.setEditable(false);
         txtTelefono.setEditable(false);
         txtFundacion.setEditable(false);
         txtCedula.setEditable(true);
-        btnBuscar.setEnabled(true);
+        
+        desactivarBoton(btnGuardar);
+        desactivarBoton(btnEliminar);
+        activarBoton(btnBuscar);
     }
     
    public void registroenc(){
@@ -40,18 +46,20 @@ public class VResponsable extends javax.swing.JFrame {
         txtApellido.setEditable(true);
         txtTelefono.setEditable(true);
         txtFundacion.setEditable(true);
-        btnBuscar.setEnabled(false);
-        btnEliminar.setEnabled(true);
+
+        desactivarBoton(btnBuscar);
+        activarBoton(btnEliminar);
     }
    
    public void registronoenc(){
-        btnEliminar.setEnabled(false);
+        desactivarBoton(btnEliminar);
+        desactivarBoton(btnBuscar);
+        activarBoton(btnGuardar);
+        
         txtCedula.setEditable(false);
-        btnBuscar.setEnabled(false);
         txtNombre.setEditable(true);
         txtApellido.setEditable(true);
         txtTelefono.setEditable(true);
-        btnGuardar.setEnabled(true);
         txtFundacion.setEditable(true);
         
     }

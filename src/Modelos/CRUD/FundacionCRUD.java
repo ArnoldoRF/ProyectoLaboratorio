@@ -153,7 +153,7 @@ public class FundacionCRUD extends ConexionDB {
     
     public ArrayList<MBeneficiario> optenerBeneficiario(String codigoFundacion) {
         ArrayList<MBeneficiario> beneficiarios = new ArrayList<MBeneficiario>();
-        String sql = "SELECT * FROM public.responsable r JOIN "
+        String sql = "SELECT * FROM public.beneficiario b JOIN "
                 + "public.solicitud s ON b.cedula_benef = s.cedula_benef "
                 + "JOIN public.fundacion f ON s.cod_fund = f.cod_fund "
                 + "WHERE f.cod_fund = ?";
@@ -183,8 +183,8 @@ public class FundacionCRUD extends ConexionDB {
     
     public ArrayList<MResponsable> optenerResponsable(String codigoFundacion) {
         ArrayList<MResponsable> responsables = new ArrayList<MResponsable>();
-        String sql = "SELECT * FROM public.responsable b JOIN "
-                + "public.solicitud s ON b.cedula_benef = s.cedula_benef "
+        String sql = "SELECT * FROM public.responsable r JOIN "
+                + "public.solicitud s ON r.cedula_resp = s.cedula_benef "
                 + "JOIN public.fundacion f ON s.cod_fund = f.cod_fund "
                 + "WHERE f.cod_fund = ?";
                

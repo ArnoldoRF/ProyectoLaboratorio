@@ -5,6 +5,7 @@ import Controladores.CBeneficiario;
 import Controladores.CResponsable;
 import Controladores.CServicio;
 import Controladores.CSolicitud;
+import Controladores.CListadoBeneficiario;
 import Generales.Mensajes;
 
 /**
@@ -120,6 +121,11 @@ public class VMenu extends javax.swing.JFrame {
         btnListados.setText("Listas");
 
         jMenuItem2.setText("Lista Solicitante");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         btnListados.add(jMenuItem2);
 
         jMenuBar1.add(btnListados);
@@ -190,6 +196,11 @@ public class VMenu extends javax.swing.JFrame {
         CSolicitud csol = new CSolicitud();
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        CListadoBeneficiario listadoBeneficiario = new CListadoBeneficiario();
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnAgenda;

@@ -15,6 +15,7 @@ public class CListadoBeneficiario implements ActionListener{
     public CListadoBeneficiario() {
         listado = new VListadoSolicitante();
         listado.btnBuscar.addActionListener(e -> buscar());
+        listado.setVisible(true);
     } 
     
     public VListadoSolicitante getVista() {
