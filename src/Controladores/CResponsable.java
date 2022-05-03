@@ -1,27 +1,27 @@
 
 package Controladores;
 
-import Modelos.MBeneficiario;
-import Vistas.VBeneficiario;
-import Modelos.CRUD.BeneficiarioCRUD;
+import Modelos.MResponsable;
+import Vistas.VResponsable;
+import Modelos.CRUD.ResponsableCRUD;
 import Generales.Mensajes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CBeneficiario implements ActionListener {
+public class CResponsable implements ActionListener {
     
-    private VBeneficiario vista;
-    private MBeneficiario modelo;
-    private BeneficiarioCRUD database;
+    private VResponsable vista;
+    private MResponsable modelo;
+    private ResponsableCRUD database;
     private Mensajes msj;
     private boolean encontrado;
         
-    public CBeneficiario() {
-        vista = new VBeneficiario();
-        modelo = new MBeneficiario();
-        database = new BeneficiarioCRUD();
-        msj = new Mensajes();
+    public CResponsable() {
+        vista = new VResponsable();
+        modelo = new MResponsable();
+        database = new ResponsableCRUD();
         vista.setVisible(true);
+        msj = new Mensajes();
         
         vista.btnBuscar.addActionListener(e -> buscar());
         vista.btnGuardar.addActionListener(e -> guardar());
@@ -30,22 +30,23 @@ public class CBeneficiario implements ActionListener {
         vista.btnCancelar.addActionListener(e -> limpiar());
     }
     
-    public VBeneficiario getVista() {
+    public VResponsable getVista() {
         return vista;
     }
     
-    public MBeneficiario getModelo() {
+    public MResponsable getModelo() {
         return modelo;
     }
     
-    public BeneficiarioCRUD getCRUD() {
+    public ResponsableCRUD getCRUD() {
         return database;
     }
     
-     private void setDatos() {
+    private void setDatos() {
         vista.txtNombre.setText(modelo.getNombre());
         vista.txtApellido.setText(modelo.getApellido());
         vista.txtTelefono.setText(modelo.getTelefono());
+        vista.txtFundacion.setText(String.valueOf(modelo.getCodigoFundacion()));
     }
     
     private void activarOpciones() {
@@ -55,7 +56,7 @@ public class CBeneficiario implements ActionListener {
     
     private void buscar() {
         if(vista.txtCedula.getText() != "") {
-                modelo = new MBeneficiario();
+                modelo = new MResponsable();
                 modelo.setCedula(vista.txtCedula.getText());
                 encontrado = database.consultar(modelo);
                 
@@ -67,10 +68,10 @@ public class CBeneficiario implements ActionListener {
                     }
                     else {
                         int resp = msj.mpreguntar("Registro eliminado. ¿Desea restaurarlo?", "Restaurado");
-                            if(resp == 0) {
-                                reactivar();
-                                setDatos();
-                                activarOpciones();
+                        if(resp == 0) {
+                            reactivar();
+                            setDatos();
+                            activarOpciones();
                         }
                     }
                 }
@@ -87,7 +88,6 @@ public class CBeneficiario implements ActionListener {
             }
     }
     
-        
     private void reactivar() {
         modelo.setEstatus("A");
         database.actualizar(modelo);
@@ -109,21 +109,23 @@ public class CBeneficiario implements ActionListener {
         modelo.setNombre(vista.txtNombre.getText());
         modelo.setApellido(vista.txtApellido.getText());
         modelo.setTelefono(vista.txtTelefono.getText());
+        modelo.setCodigoFundacion(Integer.parseInt(vista.txtFundacion.getText()));
         modelo.setEstatus("A");
         
-        if(encontrado){
+        if(encontrado) {
             database.actualizar(modelo);
             msj.mactualizado();
             limpiar();
-        }else {
+        }
+        else {
             database.insertar(modelo);
             msj.mregistrado();
             limpiar();
-           }
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
     }
 }
