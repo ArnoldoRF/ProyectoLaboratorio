@@ -7,7 +7,7 @@
  */
 
 package Generales;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 public class Dialogo extends JOptionPane {
     
@@ -50,6 +50,10 @@ public class Dialogo extends JOptionPane {
     
     public static boolean preguntaCancelar() {
         return preguntar("¿Desea cancelar?", "Cancelando");
+    }
+    
+    public static boolean preguntaRegresar() {
+        return preguntar("¿Desea regresar?", "Regresando");
     }
     
     public static boolean preguntaSalir() {
