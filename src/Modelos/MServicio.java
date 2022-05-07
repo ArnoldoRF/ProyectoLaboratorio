@@ -5,7 +5,7 @@ Ana Calles 28.363.935
 Fernando Montilla 26.182.328
 Josue Faneittes 27.436.537
 */
-package Modelos;
+package modelos;
 
 public class MServicio {
     private int codigo;
