@@ -10,7 +10,7 @@ package Controladores;
 import Modelos.MResponsable;
 import Vistas.VResponsable;
 import Modelos.CRUD.ResponsableCRUD;
-import Generales.Mensajes;
+import Generales.Dialogo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +19,6 @@ public class CResponsable implements ActionListener {
     private VResponsable vista;
     private MResponsable modelo;
     private ResponsableCRUD database;
-    private Mensajes msj;
     private boolean encontrado;
         
     public CResponsable() {
@@ -27,7 +26,6 @@ public class CResponsable implements ActionListener {
         modelo = new MResponsable();
         database = new ResponsableCRUD();
         vista.setVisible(true);
-        msj = new Mensajes();
         
         vista.btnBuscar.addActionListener(e -> buscar());
         vista.btnGuardar.addActionListener(e -> guardar());
@@ -73,8 +71,8 @@ public class CResponsable implements ActionListener {
                         vista.registroenc();
                     }
                     else {
-                        int resp = msj.mpreguntar("Registro eliminado. ¿Desea restaurarlo?", "Restaurado");
-                        if(resp == 0) {
+                        boolean resp = Dialogo.preguntaReactivar();
+                        if(resp) {
                             reactivar();
                             setDatos();
                             activarOpciones();
@@ -82,8 +80,8 @@ public class CResponsable implements ActionListener {
                     }
                 }
                 else {
-                    int resp = msj.mpreguntar("Registro inexistente. ¿Desea añadirlo?", "Restaurado");
-                    if(resp == 0)
+                    boolean resp = Dialogo.preguntaRegistrar();
+                    if(resp)
                         vista.registronoenc();
                     else
                         vista.reiniciar();
@@ -107,7 +105,7 @@ public class CResponsable implements ActionListener {
     private void eliminar() {
         database.eliminar(modelo);
         vista.reiniciar();
-        msj.meliminado();
+        Dialogo.eliminado();
     }
     
     private void guardar() {
@@ -120,12 +118,12 @@ public class CResponsable implements ActionListener {
         
         if(encontrado) {
             database.actualizar(modelo);
-            msj.mactualizado();
+            Dialogo.actualizado();
             limpiar();
         }
         else {
             database.insertar(modelo);
-            msj.mregistrado();
+            Dialogo.registrado();
             limpiar();
         }
     }

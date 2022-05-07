@@ -10,7 +10,7 @@ package Controladores;
 import Modelos.MBeneficiario;
 import Vistas.VBeneficiario;
 import Modelos.CRUD.BeneficiarioCRUD;
-import Generales.Mensajes;
+import Generales.Dialogo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,14 +19,12 @@ public class CBeneficiario implements ActionListener {
     private VBeneficiario vista;
     private MBeneficiario modelo;
     private BeneficiarioCRUD database;
-    private Mensajes msj;
     private boolean encontrado;
         
     public CBeneficiario() {
         vista = new VBeneficiario();
         modelo = new MBeneficiario();
         database = new BeneficiarioCRUD();
-        msj = new Mensajes();
         vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
@@ -72,8 +70,8 @@ public class CBeneficiario implements ActionListener {
                         vista.registroenc();
                     }
                     else {
-                        int resp = msj.mpreguntar("Registro eliminado. ¿Desea restaurarlo?", "Restaurado");
-                            if(resp == 0) {
+                        boolean resp = Dialogo.preguntaReactivar();
+                            if(resp) {
                                 reactivar();
                                 setDatos();
                                 activarOpciones();
@@ -81,8 +79,8 @@ public class CBeneficiario implements ActionListener {
                     }
                 }
                 else {
-                    int resp = msj.mpreguntar("Registro inexistente. ¿Desea añadirlo?", "Restaurado");
-                    if(resp == 0)
+                    boolean resp = Dialogo.preguntaRegistrar();
+                    if(resp)
                         vista.registronoenc();
                     else
                         vista.reiniciar();
@@ -107,7 +105,7 @@ public class CBeneficiario implements ActionListener {
     private void eliminar() {
         database.eliminar(modelo);
         vista.reiniciar();
-        msj.meliminado();
+        Dialogo.eliminado();
     }
     
     private void guardar() {
@@ -119,13 +117,13 @@ public class CBeneficiario implements ActionListener {
         
         if(encontrado){
             database.actualizar(modelo);
-            msj.mactualizado();
+            Dialogo.actualizado();
             limpiar();
         }else {
             database.insertar(modelo);
-            msj.mregistrado();
+            Dialogo.registrado();
             limpiar();
-           }
+         }
     }
 
     @Override

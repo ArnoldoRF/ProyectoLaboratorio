@@ -10,7 +10,7 @@ package Controladores;
 import Modelos.MServicio;
 import Vistas.VServicio;
 import Modelos.CRUD.ServicioCRUD;
-import Generales.Mensajes;
+import Generales.Dialogo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +19,6 @@ public class CServicio implements ActionListener {
     private VServicio vista;
     private MServicio modelo;
     private ServicioCRUD database;
-    private Mensajes msj;
     
     private boolean encontrado;
         
@@ -27,7 +26,6 @@ public class CServicio implements ActionListener {
         vista = new VServicio();
         modelo = new MServicio();
         database = new ServicioCRUD();
-        msj = new Mensajes();
         vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
@@ -72,8 +70,8 @@ public class CServicio implements ActionListener {
                         vista.registroenc();
                     }
                     else {
-                        int resp = msj.mpreguntar("Registro eliminado. ¿Desea restaurarlo?", "Restaurado");
-                        if(resp == 0) {
+                        boolean resp = Dialogo.preguntaReactivar();
+                        if(resp) {
                             reactivar();
                             setDatos();
                             activarOpciones();
@@ -81,15 +79,15 @@ public class CServicio implements ActionListener {
                     }
                 }
                 else {
-                    int resp = msj.mpreguntar("Registro inexistente. ¿Desea añadirlo?", "Restaurado");
-                    if(resp == 0)
+                    boolean resp = Dialogo.preguntaRegistrar();
+                    if(resp)
                         vista.registronoenc();
                     else
                         vista.reiniciar();
                 }
             }
             else {
-                msj.madvertencia("Por favor escriba el código");
+                Dialogo.advertencia("Por favor escriba el código");
             }
     }
     
@@ -101,7 +99,7 @@ public class CServicio implements ActionListener {
     private void eliminar() {
         database.eliminar(modelo);
         vista.reiniciar();
-        msj.meliminado();
+        Dialogo.eliminado();
     }
     
     private void reactivar() {
@@ -117,11 +115,11 @@ public class CServicio implements ActionListener {
         
         if(encontrado){
             database.actualizar(modelo);
-            msj.mactualizado();
+            Dialogo.actualizado();
             limpiar();
         }else{
             database.insertar(modelo);
-            msj.mregistrado();
+            Dialogo.registrado();
             limpiar();
         }
     }

@@ -12,18 +12,16 @@ import Controladores.CResponsable;
 import Controladores.CServicio;
 import Controladores.CSolicitud;
 import Controladores.CListadoBeneficiario;
-import Generales.Mensajes;
+import Generales.Dialogo;
 
 /**
  *
  * @author Khaal
  */
 public class VMenu extends javax.swing.JFrame {
-    private Mensajes msj;
     
     public VMenu() {
         initComponents();
-        msj = new Mensajes();
         this.setLocationRelativeTo(null);
     }
 
@@ -180,7 +178,7 @@ public class VMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFundacionActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        msj.mcerrarsistema();
+        Dialogo.preguntaSalir();
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 

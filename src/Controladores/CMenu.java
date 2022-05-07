@@ -7,14 +7,12 @@ Josue Faneittes 27.436.537
 */
 package Controladores;
 
-import Generales.Mensajes;
 import Modelos.MMenu;
 import Vistas.VMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CMenu implements ActionListener {
-    private Mensajes msj=new Mensajes();
     private VMenu vmenu ;
     
     public CMenu(){

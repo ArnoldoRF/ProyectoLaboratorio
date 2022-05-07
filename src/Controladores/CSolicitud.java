@@ -7,7 +7,7 @@ Josue Faneittes 27.436.537
 */
 package Controladores;
 
-import Generales.Mensajes;
+import Generales.Dialogo;
 import Vistas.VSolicitud;
 import Modelos.CRUD.FundacionCRUD;
 import Modelos.MSolicitud;
@@ -70,8 +70,7 @@ public class CSolicitud implements ActionListener {
     public void consultar() {
         if(!vista.txtCedula.getText().isBlank()) {
                 if(!(new BeneficiarioCRUD().consultar(vista.txtCedula.getText()))) {
-                    Mensajes msj = new Mensajes();
-                    msj.mnencontrado();
+                    Dialogo.preguntaRegistrar();
                 }
             }
             else {
