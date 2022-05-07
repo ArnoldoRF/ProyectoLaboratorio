@@ -8,8 +8,7 @@
 
 package modelos.database;
 
-import Modelos.Database.GestionConexion;
-import Modelos.MServicio;
+import modelos.MServicio;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
