@@ -4,10 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/modelos/CRUD/ServicioCRUD.java</file>
-            <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/generales/Dialogo.java</file>
-            <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/controladores/CBeneficiario.java</file>
-            <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/modelos/database/ServicioCrud.java</file>
-            <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/modelos/database/GestionConexion.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/modelos/database/ServicioDao.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/controladores/CServicio.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/ProyectoLaboratorio/src/modelos/database/Dao.java</file>
         </group>
     </open-files>
 </project-private>

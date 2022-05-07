@@ -12,9 +12,9 @@ import java.util.List;
 
 public interface Dao<T> {
     
-    public abstract boolean insertar(T obj);
+    public abstract boolean insertar(T modelo);
     public abstract List<T> listar();
-    public abstract T consultar(T obj);
-    public abstract boolean actualizar(T obj);
-    public abstract boolean eliminar(T obj);
+    public abstract T consultar(T modelo);
+    public abstract boolean actualizar(T modelo);
+    public abstract boolean eliminar(T modelo);
 }
