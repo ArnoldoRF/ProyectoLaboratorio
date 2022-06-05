@@ -18,12 +18,14 @@ public class SolicitudModelo {
     private String prioridad;
     private Date fechaCreacion;
     private Date fechaAprobacion;
+    private String estado;
     private String estatus;
     
     public SolicitudModelo() {}
     
     public SolicitudModelo(String codigo, String cedulaResponsable, String cedulaBeneficiario,
-            String codigoFundacion, String prioridad, Date fechaCreacion, Date fechaAprobacion) {
+            String codigoFundacion, String prioridad, Date fechaCreacion, Date fechaAprobacion, 
+            String estado, String estatus) {
         
         this.codigo = codigo;
         this.cedulaResponsable = cedulaResponsable;
@@ -32,6 +34,8 @@ public class SolicitudModelo {
         this.prioridad = prioridad;
         this.fechaAprobacion = fechaAprobacion;
         this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
+        this.estatus = estatus;
     }
 
     public String getCodigo() {
@@ -88,6 +92,14 @@ public class SolicitudModelo {
 
     public void setFechaAprobacion(Date fechaAprovacion) {
         this.fechaAprobacion = fechaAprovacion;
+    }
+    
+    public String getEstado() {
+        return estado;
+    }
+    
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     public String getEstatus() {
