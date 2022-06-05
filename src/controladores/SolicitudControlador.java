@@ -8,38 +8,36 @@
 
 package controladores;
 
-import modelos.FundacionModelo;
-import modelos.ServicioModelo;
-import vistas.FundacionVista;
-import dao.FundacionDao;
-import dao.ServicioDao;
+import modelos.SolicitudModelo;
+import vistas.SolicitudVista;
+import dao.SolicitudDao;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import utilidades.dialogo.*;
 
 public class SolicitudControlador {
     
-    private final FundacionDao dao;
-    private final FundacionVista vista;
-    private FundacionModelo modelo;
-    private List<ServicioModelo> servicios;
+    private final SolicitudDao dao;
+    private final SolicitudVista vista;
+    private SolicitudModelo modelo;
     
     private boolean encontrado = false;
             
     public SolicitudControlador() {
-        dao = new FundacionDao();
         
-        vista = new FundacionVista();
+        dao = new SolicitudDao();
+        
+        vista = new SolicitudVista();
         vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
-        vista.btnGuardar.addActionListener(e -> guardar());
+        //vista.btnGuardar.addActionListener(e -> guardar());
         vista.btnEliminar.addActionListener(e -> eliminar());
-        vista.btnAñadirServicio.addActionListener(e -> añadirServicio());
-        vista.btnQuitarServicio.addActionListener(e -> quitarServicio());
+    //    vista.btnAñadirServicio.addActionListener(e -> añadirServicio());
+    //    vista.btnQuitarServicio.addActionListener(e -> quitarServicio());
     }
     
-    private void cargarDatos() {
+    private void cargarDatos() {/*
         vista.entryCodigo.setText(modelo.getCodigo());
         vista.entryNombre.setText(modelo.getNombre());
         vista.entryPresupuesto.setText(String.valueOf(modelo.getPresupuesto()));
@@ -57,15 +55,16 @@ public class SolicitudControlador {
         }
         
         vista.tablaServicio.setModel(tableModel);
+        */
     }
     
     private void buscar() {
-        modelo = new FundacionModelo();
+        modelo = new SolicitudModelo();
         modelo.setCodigo(vista.entryCodigo.getText());
 
         encontrado = dao.consultar(modelo);
         if(encontrado) {
-            if(modelo.getEstatus().equals("A")) {
+            if(!modelo.getEstatus().equals("E")) {
                 vista.habilitarEdicion();
                 cargarDatos();
             }
@@ -100,7 +99,7 @@ public class SolicitudControlador {
     }
     
     private void reactivar() {
-        modelo.setEstatus("A");
+        modelo.setEstatus("P");
         
         boolean estaReactivado = dao.actualizar(modelo);
         if(estaReactivado)
@@ -108,7 +107,7 @@ public class SolicitudControlador {
         else
             Problema.errorReactivar();
     }
-    
+    /*
     private void guardar() {
         modelo.setCodigo(vista.entryCodigo.getText());
         modelo.setNombre(vista.entryNombre.getText());
@@ -174,5 +173,5 @@ public class SolicitudControlador {
             Mensaje.mensaje("La fundación no presta ese servicio");
         
         cargarDatos();
-    }
+    }*/
 }

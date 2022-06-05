@@ -80,6 +80,7 @@ CREATE TABLE solicitud (
 	prioridad character varying(5) NOT NULL,
 	fecha_creacion date NOT NULL,
 	fecha_aprobacion date NOT NULL,
+	estado character NOT NULL,
 	estatus character NOT NULL,
 	PRIMARY KEY (solicitud_codigo)
 );

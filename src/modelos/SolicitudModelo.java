@@ -8,7 +8,7 @@
 
 package modelos;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class SolicitudModelo {
     private String codigo;
@@ -16,13 +16,14 @@ public class SolicitudModelo {
     private String cedulaBeneficiario;
     private String codigoFundacion;
     private String prioridad;
-    private LocalDate fechaCreacion;
-    private LocalDate fechaAprobacion;
+    private Date fechaCreacion;
+    private Date fechaAprobacion;
+    private String estatus;
     
     public SolicitudModelo() {}
     
     public SolicitudModelo(String codigo, String cedulaResponsable, String cedulaBeneficiario,
-            String codigoFundacion, String prioridad, LocalDate fechaCreacion, LocalDate fechaAprobacion) {
+            String codigoFundacion, String prioridad, Date fechaCreacion, Date fechaAprobacion) {
         
         this.codigo = codigo;
         this.cedulaResponsable = cedulaResponsable;
@@ -73,19 +74,27 @@ public class SolicitudModelo {
         this.codigoFundacion = codigoFundacion;
     }
 
-    public LocalDate getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDate getFechaAprovacion() {
+    public Date getFechaAprobacion() {
         return fechaAprobacion;
     }
 
-    public void setFechaAprovacion(LocalDate fechaAprovacion) {
+    public void setFechaAprobacion(Date fechaAprovacion) {
         this.fechaAprobacion = fechaAprovacion;
+    }
+    
+    public String getEstatus() {
+        return estatus;
+    }
+    
+    public void setEstatus(String estatus) { 
+        this.estatus = estatus;
     }
 }
