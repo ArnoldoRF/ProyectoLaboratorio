@@ -385,7 +385,7 @@ public class SolicitudVista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxFundaciones;
+    public javax.swing.JComboBox<String> boxFundaciones;
     private javax.swing.JComboBox<String> boxPrioridad;
     public javax.swing.JButton btnAñadirServicio;
     public javax.swing.JButton btnBuscar;

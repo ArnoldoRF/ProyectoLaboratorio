@@ -63,7 +63,6 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
             
             ResultSet resultados = sentencia.executeQuery();
             if(resultados.next()) {
-                modelo.setCodigo(resultados.getString("fundacion_codigo"));
                 modelo.setCedulaResponsable(resultados.getString("responsable_cedula"));
                 modelo.setCedulaBeneficiario(resultados.getString("beneficiario_cedula"));
                 modelo.setCodigoFundacion(resultados.getString("fundacion_codigo"));

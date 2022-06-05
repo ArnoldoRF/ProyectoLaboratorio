@@ -37,9 +37,10 @@ public class SolicitudControlador {
     //    vista.btnQuitarServicio.addActionListener(e -> quitarServicio());
     }
     
-    private void cargarDatos() {/*
+    private void cargarDatos() {
         vista.entryCodigo.setText(modelo.getCodigo());
-        vista.entryNombre.setText(modelo.getNombre());
+        vista.entryBeneficiario.setText(modelo.getCedulaBeneficiario());
+        /*vista.boxFundaciones.addItem(modelo.getCodigoFundacion());
         vista.entryPresupuesto.setText(String.valueOf(modelo.getPresupuesto()));
         
         servicios = dao.listarServicios(modelo.getCodigo());
@@ -64,7 +65,7 @@ public class SolicitudControlador {
 
         encontrado = dao.consultar(modelo);
         if(encontrado) {
-            if(!modelo.getEstatus().equals("E")) {
+            if(modelo.getEstatus().equals("A")) {
                 vista.habilitarEdicion();
                 cargarDatos();
             }
@@ -99,7 +100,7 @@ public class SolicitudControlador {
     }
     
     private void reactivar() {
-        modelo.setEstatus("P");
+        modelo.setEstatus("A");
         
         boolean estaReactivado = dao.actualizar(modelo);
         if(estaReactivado)
