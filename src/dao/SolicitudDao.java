@@ -11,26 +11,31 @@ package dao;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.*;
-import modelos.FundacionModelo;
+import modelos.SolicitudModelo;
 import modelos.ServicioModelo;
 import utilidades.GestorConexion;
 
-public class FundacionDao implements DaoInterface<FundacionModelo> {
+public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         
     @Override
-    public boolean insertar(final FundacionModelo modelo) {
-        String sql = "INSERT INTO fundacion " +
-                     "(fundacion_codigo, nombre, presupuesto, estatus) " +
-                     "VALUES (?, ?, ?, ?)";
+    public boolean insertar(final SolicitudModelo modelo) {
+        String sql = "INSERT INTO solicitud " +
+                     "(solicitud_codigo, responsable_cedula, beneficiario_cedula, " +
+                     "fundacion_codigo, prioridad, fecha_creacion, fecha_aprobacion, estatus) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         boolean insertado = false;
         Connection conexion = GestorConexion.getConexion();
         
         try(PreparedStatement sentencia = conexion.prepareStatement(sql)) {
             sentencia.setString(1, modelo.getCodigo());
-            sentencia.setString(2, modelo.getNombre());
-            sentencia.setDouble(3, modelo.getPresupuesto());
-            sentencia.setString(4, modelo.getEstatus());
+            sentencia.setString(2, modelo.getCedulaResponsable());
+            sentencia.setString(3, modelo.getCedulaBeneficiario());
+            sentencia.setString(4, modelo.getCodigoFundacion());
+            sentencia.setString(5, modelo.getPrioridad());
+            sentencia.setDate(6, modelo.getFechaCreacion());
+            sentencia.setDate(7, modelo.getFechaAprobacion());
+            sentencia.setString(8, modelo.getEstatus());
             sentencia.executeUpdate();
             
             insertado = true;
@@ -44,9 +49,9 @@ public class FundacionDao implements DaoInterface<FundacionModelo> {
     }
     
     @Override
-    public boolean consultar(final FundacionModelo modelo) {        
-        String sql = "SELECT * FROM fundacion " +
-                     "WHERE fundacion_codigo=?";
+    public boolean consultar(final SolicitudModelo modelo) {        
+        String sql = "SELECT * FROM solicitud " +
+                     "WHERE solicitud_codigo=?";
         
         boolean encontrado = false;
         Connection conexion = GestorConexion.getConexion();
@@ -57,8 +62,12 @@ public class FundacionDao implements DaoInterface<FundacionModelo> {
             ResultSet resultados = sentencia.executeQuery();
             if(resultados.next()) {
                 modelo.setCodigo(resultados.getString("fundacion_codigo"));
-                modelo.setNombre(resultados.getString("nombre"));
-                modelo.setPresupuesto(resultados.getDouble("presupuesto"));
+                modelo.setCedulaResponsable(resultados.getString("responsable_cedula"));
+                modelo.setCedulaBeneficiario(resultados.getString("beneficiario_cedula"));
+                modelo.setCodigoFundacion(resultados.getString("fundacion_codigo"));
+                modelo.setPrioridad(resultados.getString("prioridad"));
+                modelo.setFechaCreacion(resultados.getDate("fecha_creacion"));
+                modelo.setFechaAprobacion(resultados.getDate("fecha_aprobacion"));
                 modelo.setEstatus(resultados.getString("estatus"));
                 
                 encontrado = true;
@@ -73,20 +82,25 @@ public class FundacionDao implements DaoInterface<FundacionModelo> {
     }
     
     @Override
-    public boolean actualizar(final FundacionModelo modelo) {
-        String sql = "UPDATE fundacion " +
-                     "SET fundacion_codigo=?, nombre=?, presupuesto=?, estatus=? " +
-                     "WHERE fundacion_codigo=?";
+    public boolean actualizar(final SolicitudModelo modelo) {
+        String sql = "UPDATE solicitud " +
+                     "SET responsable_cedula=?, beneficiario_cedula=?, " +
+                     "fundacion_codigo=?, priodidad=?, " +
+                     "fecha_creacion=?, fecha_aprobacion=?, estatus=? " +
+                     "WHERE solicitud_codigo=?";
         
         boolean actualizado = false;
         Connection conexion = GestorConexion.getConexion();
         
         try(PreparedStatement sentencia = conexion.prepareStatement(sql)) {
-            sentencia.setString(1, modelo.getCodigo());
-            sentencia.setString(2, modelo.getNombre());
-            sentencia.setDouble(3, modelo.getPresupuesto());
-            sentencia.setString(4, modelo.getEstatus());
-            sentencia.setString(5, modelo.getCodigo());
+            sentencia.setString(1, modelo.getCedulaResponsable());
+            sentencia.setString(2, modelo.getCedulaBeneficiario());
+            sentencia.setString(3, modelo.getCodigoFundacion());
+            sentencia.setString(4, modelo.getPrioridad());
+            sentencia.setDate(5, modelo.getFechaCreacion());
+            sentencia.setDate(6, modelo.getFechaAprobacion());
+            sentencia.setString(7, modelo.getEstatus());
+            sentencia.setString(8, modelo.getCodigo());
             sentencia.executeUpdate();
             
             actualizado = true;
@@ -100,9 +114,9 @@ public class FundacionDao implements DaoInterface<FundacionModelo> {
     }
     
     @Override
-    public boolean eliminar(final FundacionModelo modelo) {
-        String sql = "UPDATE fundacion SET estatus=? " +
-                     "WHERE fundacion_codigo=?";
+    public boolean eliminar(final SolicitudModelo modelo) {
+        String sql = "UPDATE solicitud SET estatus=? " +
+                     "WHERE solicitud_codigo=?";
         
         boolean eliminado = false;
         Connection conexion = GestorConexion.getConexion();
@@ -152,8 +166,8 @@ public class FundacionDao implements DaoInterface<FundacionModelo> {
         GestorConexion.desconectar();
         return servicios;
     }
-    
-    public boolean añadirServicio(final FundacionModelo modelo, String codigoServicio) {
+    /*
+    public boolean añadirServicio(String codigoSolicitud, String codigoServicio) {
         String sql = "INSERT INTO servicio_fundacion " +
                      "(fundacion_codigo, servicio_codigo) " +
                      "VALUES (?, ?)";
@@ -197,5 +211,6 @@ public class FundacionDao implements DaoInterface<FundacionModelo> {
         
         GestorConexion.desconectar();
         return servicioEliminado;
-    }
+    }*/
 }
+

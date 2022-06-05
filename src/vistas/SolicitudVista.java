@@ -17,6 +17,7 @@ public class SolicitudVista extends javax.swing.JFrame {
         com.formdev.flatlaf.FlatLightLaf.setup();
         initComponents();
         EventoCambio.agregar(entryCodigo, e -> habilitarBusqueda());
+        EventoCambio.agregar(entryBeneficiario, e -> habilitarBusquedaBeneficiario());
         reiniciar();
         this.setLocationRelativeTo(null);
     }
@@ -26,16 +27,31 @@ public class SolicitudVista extends javax.swing.JFrame {
         btnBuscar.setEnabled(estado);
     }
     
+    public void habilitarBusquedaBeneficiario() {
+        boolean estado = !entryBeneficiario.getText().isBlank() && entryBeneficiario.isEditable();
+        btnBuscarBeneficiario.setEnabled(estado);
+    }
+    
     public void habilitarRegistro() {
         btnBuscar.setEnabled(false);
+        btnProcesar.setEnabled(false);
         btnGuardar.setEnabled(true);
         btnEliminar.setEnabled(false);
-        btnAñadirServicio.setEnabled(true);
-        btnQuitarServicio.setEnabled(false);
         
         entryCodigo.setEditable(false);
         entryBeneficiario.setEditable(true);
-        entryPresupuesto.setEditable(true);
+    }
+    
+    public void habilitarFundacion() {
+        btnBuscarBeneficiario.setEnabled(false);
+        entryBeneficiario.setEnabled(false);
+        boxFundaciones.setEnabled(true);
+    }
+    
+    public void habilitarServicio() {
+        boxFundaciones.setEnabled(false);
+        btnAñadirServicio.setEnabled(true);
+        btnQuitarServicio.setEnabled(false);
     }
     
     public void habilitarEdicion() {
@@ -44,30 +60,36 @@ public class SolicitudVista extends javax.swing.JFrame {
         btnEliminar.setEnabled(true);
         btnAñadirServicio.setEnabled(true);
         btnQuitarServicio.setEnabled(true);
+        btnProcesar.setEnabled(true);
         
         entryCodigo.setEditable(false);
         entryBeneficiario.setEditable(true);
-        entryPresupuesto.setEditable(true);
+        boxFundaciones.setEnabled(true);     
     }
     
     public void reiniciar() {
         btnBuscar.setEnabled(false);
+        btnBuscarBeneficiario.setEnabled(false);
         btnGuardar.setEnabled(false);
+        btnProcesar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnAñadirServicio.setEnabled(false);
         btnQuitarServicio.setEnabled(false);
         
         entryCodigo.setEditable(true);
         entryBeneficiario.setEditable(false);
-        entryPresupuesto.setEditable(false);
+        boxFundaciones.setEnabled(false);
         
         entryCodigo.setText("");
         entryBeneficiario.setText("");
+        boxFundaciones.removeAllItems();
+        entryResponsable.setText("");
         entryPresupuesto.setText("");
+        entryEstatus.setText("");
         
         DefaultTableModel tableModel = (DefaultTableModel) tablaServicios.getModel();
         tableModel.setRowCount(0);
-        //tablaServicios.setModel(tableModel);
+        tablaServicios.setModel(tableModel);
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +112,7 @@ public class SolicitudVista extends javax.swing.JFrame {
         tablaServicios = new javax.swing.JTable();
         btnQuitarServicio = new javax.swing.JButton();
         btnAñadirServicio = new javax.swing.JButton();
-        btnBuscar1 = new javax.swing.JButton();
+        btnBuscarBeneficiario = new javax.swing.JButton();
         boxFundaciones = new javax.swing.JComboBox<>();
         entryResponsable = new javax.swing.JTextField();
         lbResponsable = new javax.swing.JLabel();
@@ -98,6 +120,9 @@ public class SolicitudVista extends javax.swing.JFrame {
         entryPresupuesto = new javax.swing.JTextField();
         lbEstatus = new javax.swing.JLabel();
         entryEstatus = new javax.swing.JTextField();
+        btnProcesar = new javax.swing.JButton();
+        boxPrioridad = new javax.swing.JComboBox<>();
+        lbPrioridad = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -170,10 +195,10 @@ public class SolicitudVista extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -206,10 +231,10 @@ public class SolicitudVista extends javax.swing.JFrame {
         btnAñadirServicio.setMinimumSize(new java.awt.Dimension(77, 24));
         btnAñadirServicio.setPreferredSize(new java.awt.Dimension(77, 25));
 
-        btnBuscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBuscar1.setText("BUSCAR");
-        btnBuscar1.setMaximumSize(new java.awt.Dimension(77, 24));
-        btnBuscar1.setMinimumSize(new java.awt.Dimension(77, 24));
+        btnBuscarBeneficiario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarBeneficiario.setText("BUSCAR");
+        btnBuscarBeneficiario.setMaximumSize(new java.awt.Dimension(77, 24));
+        btnBuscarBeneficiario.setMinimumSize(new java.awt.Dimension(77, 24));
 
         boxFundaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -225,6 +250,17 @@ public class SolicitudVista extends javax.swing.JFrame {
 
         entryEstatus.setEnabled(false);
 
+        btnProcesar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnProcesar.setText("PROCESAR");
+        btnProcesar.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnProcesar.setMaximumSize(new java.awt.Dimension(77, 24));
+        btnProcesar.setMinimumSize(new java.awt.Dimension(77, 24));
+        btnProcesar.setPreferredSize(new java.awt.Dimension(77, 25));
+
+        boxPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Media", "Baja" }));
+
+        lbPrioridad.setText("Prioridad");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -236,46 +272,55 @@ public class SolicitudVista extends javax.swing.JFrame {
                         .addComponent(lbEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(entryEstatus))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lbPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(entryPresupuesto))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lbFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boxFundaciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnProcesar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lbBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(entryBeneficiario))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(entryPresupuesto))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lbFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(entryCodigo)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnAñadirServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnQuitarServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(lbResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(entryResponsable))))
+                                    .addComponent(boxFundaciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lbBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(entryBeneficiario))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(entryCodigo)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnBuscarBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(btnAñadirServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnQuitarServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lbResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(entryResponsable))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(boxPrioridad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -290,7 +335,7 @@ public class SolicitudVista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(entryBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbFundacion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,6 +348,10 @@ public class SolicitudVista extends javax.swing.JFrame {
                     .addComponent(btnAñadirServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(entryResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
@@ -313,12 +362,13 @@ public class SolicitudVista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(entryEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProcesar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -336,12 +386,14 @@ public class SolicitudVista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxFundaciones;
+    private javax.swing.JComboBox<String> boxPrioridad;
     public javax.swing.JButton btnAñadirServicio;
     public javax.swing.JButton btnBuscar;
-    public javax.swing.JButton btnBuscar1;
+    public javax.swing.JButton btnBuscarBeneficiario;
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnProcesar;
     public javax.swing.JButton btnQuitarServicio;
     public javax.swing.JButton btnRegresar;
     public javax.swing.JTextField entryBeneficiario;
@@ -357,6 +409,7 @@ public class SolicitudVista extends javax.swing.JFrame {
     private javax.swing.JLabel lbEstatus;
     private javax.swing.JLabel lbFundacion;
     private javax.swing.JLabel lbPresupuesto;
+    private javax.swing.JLabel lbPrioridad;
     private javax.swing.JLabel lbResponsable;
     public javax.swing.JTable tablaServicios;
     // End of variables declaration//GEN-END:variables
