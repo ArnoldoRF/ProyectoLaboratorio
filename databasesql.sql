@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS asistencia CASCADE;
+﻿DROP TABLE IF EXISTS asistencia CASCADE;
 DROP TABLE IF EXISTS beneficiario CASCADE;
 DROP TABLE IF EXISTS charla CASCADE;
 DROP TABLE IF EXISTS fundacion CASCADE;
@@ -152,9 +152,9 @@ INSERT INTO servicio_fundacion VALUES
 ('S007', 'F3');
 
 INSERT INTO solicitud VALUES
-('SF101', '21111111', '13333333', 'F1', 'ALTA', '2022-03-25', '2022-03-30', 'A', 'A'),
-('SF201', '22222222', '11111111', 'F2', 'MEDIA', '2022-04-01', '2022-04-10', 'A', 'A'),
-('SF301', '23333333', '12222222', 'F3', 'BAJA', '2022-04-03', '2022-04-05', 'N', 'A');
+('SF101', '21111111', '13333333', 'F1', 'Alta', '2022-03-25', '2022-03-30', 'A', 'A'),
+('SF201', '22222222', '11111111', 'F2', 'Media', '2022-04-01', '2022-04-10', 'A', 'A'),
+('SF301', '23333333', '12222222', 'F3', 'Baja', '2022-04-03', '2022-04-05', 'N', 'A');
 
 INSERT INTO solicitud_servicio VALUES
 ('SF101', 'S002', 125),
