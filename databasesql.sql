@@ -20,7 +20,7 @@ CREATE TABLE beneficiario (
 	apellido text NOT NULL,
 	telefono character varying(11) NOT NULL,
 	estatus character NOT NULL,
-	PRIMARY KEY (beneficiario_cedula);
+	PRIMARY KEY (beneficiario_cedula)
 );
 
 CREATE TABLE charla (
@@ -31,7 +31,7 @@ CREATE TABLE charla (
 	hora time(6) without time zone NOT NULL,
 	lugar text NOT NULL,
 	estatus character NOT NULL,
-	PRIMARY KEY (charla_codigo);
+	PRIMARY KEY (charla_codigo)
 );
 
 CREATE TABLE fundacion (
@@ -39,14 +39,14 @@ CREATE TABLE fundacion (
 	nombre text NOT NULL,
 	presupuesto double precision NOT NULL,
 	estatus character NOT NULL,
-	PRIMARY KEY (fundacion_codigo);
+	PRIMARY KEY (fundacion_codigo)
 );
 
 CREATE TABLE organismo (
 	organismo_rif character varying(10) NOT NULL,
 	direccion text NOT NULL,
 	estatus character NOT NULL,
-	PRIMARY KEY (organismo_rif);
+	PRIMARY KEY (organismo_rif)
 );
 
 CREATE TABLE responsable (
@@ -56,7 +56,7 @@ CREATE TABLE responsable (
 	fundacion_codigo character varying(2) NOT NULL,
 	telefono character varying(11) NOT NULL,
 	estatus character NOT NULL,
-	PRIMARY KEY (responsable_cedula);
+	PRIMARY KEY (responsable_cedula)
 );
 
 CREATE TABLE servicio (
@@ -64,7 +64,7 @@ CREATE TABLE servicio (
 	nombre text NOT NULL,
 	costo double precision NOT NULL,
 	estatus character NOT NULL,
-	PRIMARY KEY (servicio_codigo);
+	PRIMARY KEY (servicio_codigo)
 );
 
 CREATE TABLE servicio_fundacion (
@@ -152,9 +152,9 @@ INSERT INTO servicio_fundacion VALUES
 ('S007', 'F3');
 
 INSERT INTO solicitud VALUES
-('SF101', '21111111', '13333333', 'F1', 'ALTA', '2022-03-25', '2022-03-30', 'A'),
-('SF201', '22222222', '11111111', 'F2', 'MEDIA', '2022-04-01', '2022-04-10', 'A'),
-('SF301', '23333333', '12222222', 'F3', 'BAJA', '2022-04-03', '2022-04-05', 'N');
+('SF101', '21111111', '13333333', 'F1', 'ALTA', '2022-03-25', '2022-03-30', 'A', 'A'),
+('SF201', '22222222', '11111111', 'F2', 'MEDIA', '2022-04-01', '2022-04-10', 'A', 'A'),
+('SF301', '23333333', '12222222', 'F3', 'BAJA', '2022-04-03', '2022-04-05', 'N', 'A');
 
 INSERT INTO solicitud_servicio VALUES
 ('SF101', 'S002', 125),
