@@ -21,8 +21,9 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
     public boolean insertar(final SolicitudModelo modelo) {
         String sql = "INSERT INTO solicitud " +
                      "(solicitud_codigo, responsable_cedula, beneficiario_cedula, " +
-                     "fundacion_codigo, prioridad, fecha_creacion, fecha_aprobacion, estatus) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                     "fundacion_codigo, prioridad, fecha_creacion, fecha_aprobacion, " +
+                     "estado, estatus) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         boolean insertado = false;
         Connection conexion = GestorConexion.getConexion();
@@ -35,7 +36,8 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
             sentencia.setString(5, modelo.getPrioridad());
             sentencia.setDate(6, modelo.getFechaCreacion());
             sentencia.setDate(7, modelo.getFechaAprobacion());
-            sentencia.setString(8, modelo.getEstatus());
+            sentencia.setString(8, modelo.getEstado());
+            sentencia.setString(9, modelo.getEstatus());
             sentencia.executeUpdate();
             
             insertado = true;
@@ -68,6 +70,7 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
                 modelo.setPrioridad(resultados.getString("prioridad"));
                 modelo.setFechaCreacion(resultados.getDate("fecha_creacion"));
                 modelo.setFechaAprobacion(resultados.getDate("fecha_aprobacion"));
+                modelo.setEstado(resultados.getString("estado"));
                 modelo.setEstatus(resultados.getString("estatus"));
                 
                 encontrado = true;
@@ -86,7 +89,7 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         String sql = "UPDATE solicitud " +
                      "SET responsable_cedula=?, beneficiario_cedula=?, " +
                      "fundacion_codigo=?, priodidad=?, " +
-                     "fecha_creacion=?, fecha_aprobacion=?, estatus=? " +
+                     "fecha_creacion=?, fecha_aprobacion=?, estado=?, estatus=? " +
                      "WHERE solicitud_codigo=?";
         
         boolean actualizado = false;
@@ -99,8 +102,9 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
             sentencia.setString(4, modelo.getPrioridad());
             sentencia.setDate(5, modelo.getFechaCreacion());
             sentencia.setDate(6, modelo.getFechaAprobacion());
-            sentencia.setString(7, modelo.getEstatus());
-            sentencia.setString(8, modelo.getCodigo());
+            sentencia.setString(7, modelo.getEstado());
+            sentencia.setString(8, modelo.getEstatus());
+            sentencia.setString(9, modelo.getCodigo());
             sentencia.executeUpdate();
             
             actualizado = true;
