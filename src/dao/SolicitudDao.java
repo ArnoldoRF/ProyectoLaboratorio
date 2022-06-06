@@ -142,28 +142,24 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         GestorConexion.desconectar();
         return eliminado;
     }
-    /*
+    
     public List<FundacionModelo> listarFundaciones() {
-        List<ServicioModelo> servicios = new ArrayList<>();
-        String sql = "SELECT * FROM servicio serv " + 
-                     "JOIN servicio_fundacion serv_fund " +
-                     "ON serv.servicio_codigo=serv_fund.servicio_codigo " +
-                     "WHERE serv_fund.fundacion_codigo=?";
+        List<FundacionModelo> fundaciones = new ArrayList<>();
+        String sql = "SELECT * FROM fundacion";
         
         Connection conexion = GestorConexion.getConexion();
         
         try(PreparedStatement sentencia = conexion.prepareStatement(sql)) {
-            //sentencia.setString(1, fundacionCodigo);
             ResultSet resultados = sentencia.executeQuery();
             
             while(resultados.next()) {
-                ServicioModelo servicio = new ServicioModelo();
-                servicio.setCodigo(resultados.getString("servicio_codigo"));
-                servicio.setNombre(resultados.getString("nombre"));
-                servicio.setCosto(resultados.getDouble("costo"));
-                servicio.setEstatus(resultados.getString("estatus"));
+                FundacionModelo fundacion = new FundacionModelo();
+                fundacion.setCodigo(resultados.getString("fundacion_codigo"));
+                fundacion.setNombre(resultados.getString("nombre"));
+                fundacion.setPresupuesto(resultados.getDouble("presupuesto"));
+                fundacion.setEstatus(resultados.getString("estatus"));
                 
-                servicios.add(servicio);
+                fundaciones.add(fundacion);
             }
         }
         catch(SQLException e) {
@@ -171,8 +167,8 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         }
         
         GestorConexion.desconectar();
-        return servicios;
-    }*/
+        return fundaciones;
+    }
     
     public List<ServicioModelo> listarServicios(String fundacionCodigo) {
         List<ServicioModelo> servicios = new ArrayList<>();
@@ -204,10 +200,41 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         GestorConexion.desconectar();
         return servicios;
     }
-    /*
-    public boolean añadirServicio(String codigoSolicitud, String codigoServicio) {
-        String sql = "INSERT INTO servicio_fundacion " +
-                     "(fundacion_codigo, servicio_codigo) " +
+    
+    public List<ServicioModelo> listarServiciosSolicitud(String solicitudCodigo) {
+        List<ServicioModelo> servicios = new ArrayList<>();
+        String sql = "SELECT * FROM servicio serv " + 
+                     "JOIN solicitud_servicio soli_serv " +
+                     "ON serv.servicio_codigo=soli_serv.servicio_codigo " +
+                     "WHERE soli_serv.solicitud_codigo=?";
+        
+        Connection conexion = GestorConexion.getConexion();
+        
+        try(PreparedStatement sentencia = conexion.prepareStatement(sql)) {
+            sentencia.setString(1, solicitudCodigo);
+            ResultSet resultados = sentencia.executeQuery();
+            
+            while(resultados.next()) {
+                ServicioModelo servicio = new ServicioModelo();
+                servicio.setCodigo(resultados.getString("servicio_codigo"));
+                servicio.setNombre(resultados.getString("nombre"));
+                servicio.setCosto(resultados.getDouble("costo"));
+                servicio.setEstatus(resultados.getString("estatus"));
+                
+                servicios.add(servicio);
+            }
+        }
+        catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        GestorConexion.desconectar();
+        return servicios;
+    }
+    
+    public boolean añadirServicio(final SolicitudModelo modelo, String codigoServicio) {
+        String sql = "INSERT INTO solicitud_servicio " +
+                     "(solicitud_codigo, servicio_codigo) " +
                      "VALUES (?, ?)";
         
         boolean servicioAñadido = false;
@@ -228,9 +255,9 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         return servicioAñadido;
     }
     
-    public boolean eliminarServicio(final FundacionModelo modelo, String codigoServicio) {
-        String sql = "DELETE FROM servicio_fundacion " +
-                     "WHERE fundacion_codigo=? " +
+    public boolean eliminarServicio(final SolicitudModelo modelo, String codigoServicio) {
+        String sql = "DELETE FROM solicitud_servicio " +
+                     "WHERE solicitud_codigo=? " +
                      "AND servicio_codigo=? ";
         
         boolean servicioEliminado = false;
@@ -249,6 +276,6 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         
         GestorConexion.desconectar();
         return servicioEliminado;
-    }*/
+    }
 }
 
