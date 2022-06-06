@@ -51,6 +51,17 @@ public class ListadoVista extends javax.swing.JFrame {
         tablaListado.setModel(tableModel);
     }
     
+    public void listarPresupuestoFundacion() {
+        String[] encabezados = new String[3];
+        encabezados[0] = "Fundacion";
+        encabezados[1] = "Presupuesto";
+        encabezados[2] = "Porcentaje gastado";
+                
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.setColumnIdentifiers(encabezados);
+        tablaListado.setModel(tableModel);
+    }
+    
     public void listarAsistenciaCharla() {
         String[] encabezados = new String[2];
         encabezados[0] = "Charla";

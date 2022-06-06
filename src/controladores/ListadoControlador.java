@@ -41,6 +41,11 @@ public class ListadoControlador {
                 setTabla(dao.listarAsistenciaCharla());
                 vista.setTitle("Listado de asistencia por charla");
                 break;
+            case "PRESUPUESTO_FUNDACION":
+                vista.listarPresupuestoFundacion();
+                setTabla(dao.listarPresupuestoFundacion());
+                vista.setTitle("Detalles del presupuesto por fundacion");
+                break;
             case "SOLICITUD_RESPONSABLE":
                 vista.listarSolicitudResponsable();
                 setTabla(dao.listarSolicitudResponsable());

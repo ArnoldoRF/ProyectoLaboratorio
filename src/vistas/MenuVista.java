@@ -134,6 +134,11 @@ public class MenuVista extends javax.swing.JFrame {
         btnBuscar9.setText("PRESUPUESTO POR FUNDACIÓN");
         btnBuscar9.setMaximumSize(new java.awt.Dimension(77, 24));
         btnBuscar9.setMinimumSize(new java.awt.Dimension(77, 24));
+        btnBuscar9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar9ActionPerformed(evt);
+            }
+        });
 
         lbOpciones.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         lbOpciones.setText("Opciones");
@@ -238,6 +243,11 @@ public class MenuVista extends javax.swing.JFrame {
         new ListadoControlador("SOLICITUD_RESPONSABLE");
         this.dispose();
     }//GEN-LAST:event_btnListadoSolicitudResponsableActionPerformed
+
+    private void btnBuscar9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar9ActionPerformed
+        new ListadoControlador("PRESUPUESTO_FUNDACION");
+        this.dispose();
+    }//GEN-LAST:event_btnBuscar9ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBeneficiario;
