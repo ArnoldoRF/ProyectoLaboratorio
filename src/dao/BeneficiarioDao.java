@@ -121,4 +121,10 @@ public class BeneficiarioDao implements DaoInterface<BeneficiarioModelo> {
         GestorConexion.desconectar();
         return eliminado;
     }
+    
+    public boolean existe(String cedula) {
+        BeneficiarioModelo beneficiario = new BeneficiarioModelo();
+        beneficiario.setCedula(cedula);
+        return consultar(beneficiario);
+    }
 }
