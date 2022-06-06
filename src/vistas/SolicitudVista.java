@@ -46,6 +46,7 @@ public class SolicitudVista extends javax.swing.JFrame {
         btnBuscarBeneficiario.setEnabled(false);
         entryBeneficiario.setEnabled(false);
         boxFundaciones.setEnabled(true);
+        boxPrioridad.setEnabled(true);
     }
     
     public void habilitarServicio() {
@@ -64,7 +65,8 @@ public class SolicitudVista extends javax.swing.JFrame {
         
         entryCodigo.setEditable(false);
         entryBeneficiario.setEditable(true);
-        boxFundaciones.setEnabled(true);     
+        boxFundaciones.setEnabled(true); 
+        boxPrioridad.setEnabled(true);
     }
     
     public void reiniciar() {
@@ -79,6 +81,7 @@ public class SolicitudVista extends javax.swing.JFrame {
         entryCodigo.setEditable(true);
         entryBeneficiario.setEditable(false);
         boxFundaciones.setEnabled(false);
+        boxPrioridad.setEnabled(false);
         
         entryCodigo.setText("");
         entryBeneficiario.setText("");

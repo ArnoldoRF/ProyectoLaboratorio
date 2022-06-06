@@ -40,8 +40,11 @@ public class SolicitudControlador {
     private void cargarDatos() {
         vista.entryCodigo.setText(modelo.getCodigo());
         vista.entryBeneficiario.setText(modelo.getCedulaBeneficiario());
+        vista.entryResponsable.setText(modelo.getCedulaResponsable());
         vista.boxFundaciones.addItem(modelo.getCodigoFundacion());
         vista.boxPrioridad.setSelectedItem(modelo.getPrioridad());
+        vista.entryPresupuesto.setText(String.valueOf(modelo.getCostoTotal()));
+        vista.entryEstatus.setText(modelo.getEstado());
         /*vista.entryPresupuesto.setText(String.valueOf(modelo.getPresupuesto()));
         
         servicios = dao.listarServicios(modelo.getCodigo());
