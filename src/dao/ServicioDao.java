@@ -122,6 +122,5 @@ public class ServicioDao implements DaoInterface<ServicioModelo> {
         ServicioModelo servicio = new ServicioModelo();
         servicio.setCodigo(codigo);
         return consultar(servicio);
-        //servicio.
     }
 }

@@ -14,6 +14,7 @@ import modelos.FundacionModelo;
 import modelos.ServicioModelo;
 import vistas.SolicitudVista;
 import dao.SolicitudDao;
+import dao.BeneficiarioDao;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import utilidades.dialogo.*;
@@ -35,7 +36,8 @@ public class SolicitudControlador {
         vista.setVisible(true);
         
         vista.btnBuscar.addActionListener(e -> buscar());
-        //vista.btnGuardar.addActionListener(e -> guardar());
+        vista.btnBuscarBeneficiario.addActionListener(e -> buscarBeneficiario());
+        vista.btnGuardar.addActionListener(e -> guardar());
         vista.btnEliminar.addActionListener(e -> eliminar());
         vista.btnAñadirServicio.addActionListener(e -> añadirServicio());
         vista.btnQuitarServicio.addActionListener(e -> quitarServicio());
@@ -80,6 +82,15 @@ public class SolicitudControlador {
         }
         
         vista.tablaServicios.setModel(tableModel);
+    }
+    
+    public void buscarBeneficiario() {
+        if(new BeneficiarioDao().existe(vista.entryBeneficiario.getText())) {
+            vista.habilitarFundacion();
+            cargarFundaciones();
+        }
+        else
+            Mensaje.mensaje("El beneficiario no existe. Regrese y registrelo.");
     }
     
     private void buscar() {
