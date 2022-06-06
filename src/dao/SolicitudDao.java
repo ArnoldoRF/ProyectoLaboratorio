@@ -87,7 +87,7 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
     public boolean actualizar(final SolicitudModelo modelo) {
         String sql = "UPDATE solicitud " +
                      "SET responsable_cedula=?, beneficiario_cedula=?, " +
-                     "fundacion_codigo=?, priodidad=?, " +
+                     "fundacion_codigo=?, prioridad=?, " +
                      "fecha_creacion=?, fecha_aprobacion=?, estado=?, estatus=? " +
                      "WHERE solicitud_codigo=?";
         
