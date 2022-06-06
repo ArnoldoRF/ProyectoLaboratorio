@@ -45,8 +45,7 @@ public class SolicitudControlador {
         vista.boxPrioridad.setSelectedItem(modelo.getPrioridad());
         vista.entryPresupuesto.setText(String.valueOf(modelo.getCostoTotal()));
         vista.entryEstatus.setText(modelo.getEstado());
-        /*vista.entryPresupuesto.setText(String.valueOf(modelo.getPresupuesto()));
-        
+/*        
         servicios = dao.listarServicios(modelo.getCodigo());
         DefaultTableModel tableModel = (DefaultTableModel) vista.tablaServicio.getModel();
         tableModel.setRowCount(0);
