@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import modelos.SolicitudModelo;
 import modelos.ServicioModelo;
+import modelos.FundacionModelo;
 import utilidades.GestorConexion;
 
 public class SolicitudDao implements DaoInterface<SolicitudModelo> {
@@ -138,8 +139,8 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         GestorConexion.desconectar();
         return eliminado;
     }
-    
-    public List<ServicioModelo> listarServicios(final String codigo) {
+    /*
+    public List<FundacionModelo> listarFundaciones() {
         List<ServicioModelo> servicios = new ArrayList<>();
         String sql = "SELECT * FROM servicio serv " + 
                      "JOIN servicio_fundacion serv_fund " +
@@ -149,7 +150,38 @@ public class SolicitudDao implements DaoInterface<SolicitudModelo> {
         Connection conexion = GestorConexion.getConexion();
         
         try(PreparedStatement sentencia = conexion.prepareStatement(sql)) {
-            sentencia.setString(1, codigo);
+            //sentencia.setString(1, fundacionCodigo);
+            ResultSet resultados = sentencia.executeQuery();
+            
+            while(resultados.next()) {
+                ServicioModelo servicio = new ServicioModelo();
+                servicio.setCodigo(resultados.getString("servicio_codigo"));
+                servicio.setNombre(resultados.getString("nombre"));
+                servicio.setCosto(resultados.getDouble("costo"));
+                servicio.setEstatus(resultados.getString("estatus"));
+                
+                servicios.add(servicio);
+            }
+        }
+        catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        GestorConexion.desconectar();
+        return servicios;
+    }*/
+    
+    public List<ServicioModelo> listarServicios(String fundacionCodigo) {
+        List<ServicioModelo> servicios = new ArrayList<>();
+        String sql = "SELECT * FROM servicio serv " + 
+                     "JOIN servicio_fundacion serv_fund " +
+                     "ON serv.servicio_codigo=serv_fund.servicio_codigo " +
+                     "WHERE serv_fund.fundacion_codigo=?";
+        
+        Connection conexion = GestorConexion.getConexion();
+        
+        try(PreparedStatement sentencia = conexion.prepareStatement(sql)) {
+            sentencia.setString(1, fundacionCodigo);
             ResultSet resultados = sentencia.executeQuery();
             
             while(resultados.next()) {

@@ -29,6 +29,9 @@ public class ListadoDao {
     private final String ASISTENCIA_CHARLA =
             "SELECT a.charla_codigo, a.beneficiario_cedula FROM asistencia a";
     
+    private final String PRESUPUESTO_FUNDACION =
+            "";
+    
     private final String SOLICITUD_RESPONSABLE =
             "SELECT s.responsable_cedula, s.solicitud_codigo FROM solicitud s";
     

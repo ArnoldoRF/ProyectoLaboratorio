@@ -80,6 +80,7 @@ CREATE TABLE solicitud (
 	prioridad character varying(5) NOT NULL,
 	fecha_creacion date NOT NULL,
 	fecha_aprobacion date NOT NULL,
+	costo_total double precision NOT NULL,
 	estado character NOT NULL,
 	estatus character NOT NULL,
 	PRIMARY KEY (solicitud_codigo)
@@ -87,8 +88,7 @@ CREATE TABLE solicitud (
 
 CREATE TABLE solicitud_servicio (
 	solicitud_codigo character varying(5) NOT NULL,
-	servicio_codigo character varying(4) NOT NULL,
-	costo_total double precision NOT NULL
+	servicio_codigo character varying(4) NOT NULL
 );
 
 INSERT INTO asistencia VALUES
@@ -152,17 +152,17 @@ INSERT INTO servicio_fundacion VALUES
 ('S007', 'F3');
 
 INSERT INTO solicitud VALUES
-('SF101', '21111111', '13333333', 'F1', 'Alta', '2022-03-25', '2022-03-30', 'A', 'A'),
-('SF201', '22222222', '11111111', 'F2', 'Media', '2022-04-01', '2022-04-10', 'A', 'A'),
-('SF301', '23333333', '12222222', 'F3', 'Baja', '2022-04-03', '2022-04-05', 'N', 'A');
+('SF101', '21111111', '13333333', 'F1', 'Alta', '2022-03-25', '2022-03-30', 125, 'A', 'A'),
+('SF201', '22222222', '11111111', 'F2', 'Media', '2022-04-01', '2022-04-10', 70, 'A', 'A'),
+('SF301', '23333333', '12222222', 'F3', 'Baja', '2022-04-03', '2022-04-05', 35, 'N', 'A');
 
 INSERT INTO solicitud_servicio VALUES
-('SF101', 'S002', 125),
-('SF101', 'S005', 125),
-('SF101', 'S007', 125),
-('SF201', 'S004', 70),
-('SF201', 'S003', 70),
-('SF301', 'S006', 35);
+('SF101', 'S002'),
+('SF101', 'S005'),
+('SF101', 'S007'),
+('SF201', 'S004'),
+('SF201', 'S003'),
+('SF301', 'S006');
 
 CREATE INDEX ON asistencia USING btree (charla_codigo);
 
