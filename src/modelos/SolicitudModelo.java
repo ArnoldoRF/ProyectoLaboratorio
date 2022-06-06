@@ -18,6 +18,7 @@ public class SolicitudModelo {
     private String prioridad;
     private Date fechaCreacion;
     private Date fechaAprobacion;
+    private Double costoTotal;
     private String estado;
     private String estatus;
     
@@ -25,7 +26,7 @@ public class SolicitudModelo {
     
     public SolicitudModelo(String codigo, String cedulaResponsable, String cedulaBeneficiario,
             String codigoFundacion, String prioridad, Date fechaCreacion, Date fechaAprobacion, 
-            String estado, String estatus) {
+            Double costoTotal, String estado, String estatus) {
         
         this.codigo = codigo;
         this.cedulaResponsable = cedulaResponsable;
@@ -34,6 +35,7 @@ public class SolicitudModelo {
         this.prioridad = prioridad;
         this.fechaAprobacion = fechaAprobacion;
         this.fechaCreacion = fechaCreacion;
+        this.costoTotal = costoTotal;
         this.estado = estado;
         this.estatus = estatus;
     }
@@ -92,6 +94,14 @@ public class SolicitudModelo {
 
     public void setFechaAprobacion(Date fechaAprovacion) {
         this.fechaAprobacion = fechaAprovacion;
+    }
+    
+    public Double getCostoTotal() {
+        return costoTotal;
+    }
+    
+    public void setCostoTotal(Double costoTotal) {
+        this.costoTotal = costoTotal;
     }
     
     public String getEstado() {
