@@ -22,9 +22,7 @@ public class ListadoDao {
             "JOIN fundacion f ON s.fundacion_codigo = f.fundacion_codigo";
     
     private final String PRESUPUESTO_ESTATUS =
-            "SELECT s.estatus, ss.costo_total FROM solicitud s " +
-            "JOIN solicitud_servicio ss " +
-            "ON s.solicitud_codigo = ss.solicitud_codigo";
+            "SELECT s.estatus, s.costo_total FROM solicitud s ";
     
     private final String ASISTENCIA_CHARLA =
             "SELECT a.charla_codigo, a.beneficiario_cedula FROM asistencia a";
